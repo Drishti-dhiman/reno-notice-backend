@@ -1,4 +1,5 @@
 import type { Request, Response } from "express";
+import { NoticeCategory, NoticePriority } from "../../generated/prisma/client";
 import { prisma } from "../lib/prisma";
 import { validateNoticeInput } from "../lib/validateNotic";
 
@@ -44,9 +45,13 @@ export async function createNotice(req: Request, res: Response) {
       return res.status(400).json({ errors: validation.errors });
     }
 
-    const notice = await prisma.notice.create({
-      data: validation.values,
-    });
+    const data = {
+      ...validation.values,
+      category: validation.values.category as NoticeCategory,
+      priority: validation.values.priority as NoticePriority,
+    };
+
+    const notice = await prisma.notice.create({ data });
 
     res.status(201).json({ data: notice });
   } catch (error) {
@@ -68,12 +73,18 @@ export async function updateNotice(req: Request, res: Response) {
       return res.status(400).json({ errors: validation.errors });
     }
 
+    const data = {
+      ...validation.values,
+      category: validation.values.category as NoticeCategory,
+      priority: validation.values.priority as NoticePriority,
+    };
+
     const notice = await prisma.notice.update({
       where: { id },
-      data: validation.values,
+      data,
     });
 
-    res.status(200).json({message: "Notice update successfully", data: notice });
+    res.status(200).json({ message: "Notice updated successfully", data: notice });
   } catch (error: any) {
     if (error?.code === "P2025") {
       return res.status(404).json({ message: "Notice not found" });
