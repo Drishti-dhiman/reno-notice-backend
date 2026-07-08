@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import { NoticeCategory, NoticePriority } from "../../generated/prisma/client";
-import { prisma } from "../lib/prisma";
-import { validateNoticeInput } from "../lib/validateNotic";
+import { NoticeCategory, NoticePriority } from "../../generated/prisma/client.js";
+import { prisma } from "../lib/prisma.js";
+import { validateNoticeInput } from "../lib/validateNotic.js";
 
 export async function getNotices(_req: Request, res: Response) {
   try {

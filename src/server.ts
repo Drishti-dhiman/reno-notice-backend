@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
-import noticeRouter from "./routes/notice.routes";
-import { config } from "./config/config";
+import noticeRouter from "./routes/notice.routes.js";
+import { config } from "./config/config.js";
 
 const app = express();
 

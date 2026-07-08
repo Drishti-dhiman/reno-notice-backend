@@ -5,7 +5,7 @@ import {
   getNoticeById,
   getNotices,
   updateNotice,
-} from "../controllers/notice.controller";
+} from "../controllers/notice.controller.js";
 
 const noticeRouter = Router();
 
