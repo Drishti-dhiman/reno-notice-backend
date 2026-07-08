@@ -1,5 +1,5 @@
-import "dotenv/config";
 import express from "express";
+import type { Request, Response } from "express";
 import noticeRouter from "./routes/notice.routes.js";
 import { config } from "./config/config.js";
 
@@ -8,11 +8,11 @@ const app = express();
 app.use(express.json());
 app.use("/notices", noticeRouter);
 
-app.get("/", (_req, res) => {
+app.get("/", (_req: Request, res: Response) => {
   res.json({ message: "Reno backend is running" });
 });
 
-app.get("/health", (_req, res) => {
+app.get("/health", (_req: Request, res: Response) => {
   res.json({ status: "ok" });
 });
 
