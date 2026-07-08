@@ -16,8 +16,8 @@
   },
   "scripts": {
     "dev": "tsx watch --clear-screen=false src/server.ts",
-    "build": "prisma generate && tsc",
-    "postinstall": "prisma generate",
+    "build": "npx prisma generate && tsc",
+    "postinstall": "npx prisma generate",
     "start": "node dist/src/server.js"
   },
   "devDependencies": {
