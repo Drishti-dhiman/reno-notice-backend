@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "ES2022",
     "lib": ["ES2022"],
-    "module": "node20",
+    "module": "NodeNext",
     "moduleResolution": "NodeNext",
 
     "rootDir": ".",
@@ -18,8 +18,6 @@
     // "sourceMap": true
   },
 
-  // "include": [],
-
-  "exclude": ["node_modules", "dist", "generated", "**/generated/**"]
+  // "include": ["src/**/*.ts", "generated/**/*.ts"],
+    "exclude": ["node_modules", "dist", "generated", "**/generated/**"]
 }
-
