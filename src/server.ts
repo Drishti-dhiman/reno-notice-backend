@@ -1,9 +1,9 @@
 import "dotenv/config";
 import express from "express";
 import noticeRouter from "./routes/notice.routes";
+import { config } from "./config/config";
 
 const app = express();
-const port = Number(process.env.PORT) || 8000;
 
 app.use(express.json());
 app.use("/notices", noticeRouter);
@@ -16,6 +16,6 @@ app.get("/health", (_req, res) => {
   res.json({ status: "ok" });
 });
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(config.port, () => {
+  console.log(`Server is running on http://localhost:${config.port}`);
 });
