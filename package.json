@@ -11,10 +11,13 @@
   "author": "Drishti",
   "type": "module",
   "main": "index.js",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "tsx watch --clear-screen=false src/server.ts",
-    "build": "tsc",
-    "postinstall": "npx prisma generate",
+    "build": "prisma generate && tsc",
+    "postinstall": "prisma generate",
     "start": "node dist/src/server.js"
   },
   "devDependencies": {
