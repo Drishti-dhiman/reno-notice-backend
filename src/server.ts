@@ -8,7 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin: ["http://localhost:3000", "https://reno-notice-frontend-web.vercel.app/"],
+    origin: ["http://localhost:3000", "https://reno-notice-frontend-40jw86nhn-drishti-dhimans-projects.vercel.app/"],
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
 }))
 app.use("/notices", noticeRouter);
