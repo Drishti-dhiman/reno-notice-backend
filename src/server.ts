@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors"
 import type { Request, Response } from "express";
 import noticeRouter from "./routes/notice.routes.js";
 import { config } from "./config/config.js";
@@ -6,6 +7,10 @@ import { config } from "./config/config.js";
 const app = express();
 
 app.use(express.json());
+app.use(cors({
+    origin: ["http://localhost:3000", "https://reno-notice-frontend-web.vercel.app/"],
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+}))
 app.use("/notices", noticeRouter);
 
 app.get("/", (_req: Request, res: Response) => {
