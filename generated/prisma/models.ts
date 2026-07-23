@@ -8,5 +8,14 @@
  *
  * 🟢 You can import this file directly.
  */
-export type * from './models/Notice.js'
+export type * from './models/User.js'
+export type * from './models/ClientProfile.js'
+export type * from './models/MembershipPlan.js'
+export type * from './models/Membership.js'
+export type * from './models/Payment.js'
+export type * from './models/Attendance.js'
+export type * from './models/WorkoutPlan.js'
+export type * from './models/DietPlan.js'
+export type * from './models/Progress.js'
+export type * from './models/Notification.js'
 export type * from './commonInputTypes.js'

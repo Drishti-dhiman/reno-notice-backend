@@ -9,18 +9,40 @@
 * 🟢 You can import this file directly.
 */
 
-export const NoticeCategory = {
-  EXAM: 'EXAM',
-  EVENT: 'EVENT',
-  GENERAL: 'GENERAL'
+export const Role = {
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  ADMIN: 'ADMIN',
+  TRAINER: 'TRAINER',
+  CLIENT: 'CLIENT'
 } as const
 
-export type NoticeCategory = (typeof NoticeCategory)[keyof typeof NoticeCategory]
+export type Role = (typeof Role)[keyof typeof Role]
 
 
-export const NoticePriority = {
-  NORMAL: 'NORMAL',
-  URGENT: 'URGENT'
+export const UserStatus = {
+  ACTIVE: 'ACTIVE',
+  SUSPENDED: 'SUSPENDED',
+  INACTIVE: 'INACTIVE'
 } as const
 
-export type NoticePriority = (typeof NoticePriority)[keyof typeof NoticePriority]
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+
+
+export const MembershipStatus = {
+  ACTIVE: 'ACTIVE',
+  EXPIRED: 'EXPIRED',
+  PENDING: 'PENDING',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type MembershipStatus = (typeof MembershipStatus)[keyof typeof MembershipStatus]
+
+
+export const PaymentMode = {
+  CASH: 'CASH',
+  UPI: 'UPI',
+  CARD: 'CARD',
+  NET_BANKING: 'NET_BANKING'
+} as const
+
+export type PaymentMode = (typeof PaymentMode)[keyof typeof PaymentMode]

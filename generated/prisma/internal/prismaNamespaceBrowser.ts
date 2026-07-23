@@ -51,7 +51,16 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
-  Notice: 'Notice'
+  User: 'User',
+  ClientProfile: 'ClientProfile',
+  MembershipPlan: 'MembershipPlan',
+  Membership: 'Membership',
+  Payment: 'Payment',
+  Attendance: 'Attendance',
+  WorkoutPlan: 'WorkoutPlan',
+  DietPlan: 'DietPlan',
+  Progress: 'Progress',
+  Notification: 'Notification'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -70,19 +79,155 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
-export const NoticeScalarFieldEnum = {
+export const UserScalarFieldEnum = {
   id: 'id',
-  title: 'title',
-  body: 'body',
-  category: 'category',
-  priority: 'priority',
-  publishDate: 'publishDate',
-  imageUrl: 'imageUrl',
+  name: 'name',
+  email: 'email',
+  passwordHash: 'passwordHash',
+  role: 'role',
+  status: 'status',
+  refreshToken: 'refreshToken',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type NoticeScalarFieldEnum = (typeof NoticeScalarFieldEnum)[keyof typeof NoticeScalarFieldEnum]
+export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const ClientProfileScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  phone: 'phone',
+  dob: 'dob',
+  gender: 'gender',
+  address: 'address',
+  emergencyContact: 'emergencyContact',
+  medicalNotes: 'medicalNotes',
+  weight: 'weight',
+  height: 'height',
+  joiningDate: 'joiningDate',
+  photoUrl: 'photoUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ClientProfileScalarFieldEnum = (typeof ClientProfileScalarFieldEnum)[keyof typeof ClientProfileScalarFieldEnum]
+
+
+export const MembershipPlanScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  durationDays: 'durationDays',
+  price: 'price',
+  discount: 'discount',
+  description: 'description',
+  isActive: 'isActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MembershipPlanScalarFieldEnum = (typeof MembershipPlanScalarFieldEnum)[keyof typeof MembershipPlanScalarFieldEnum]
+
+
+export const MembershipScalarFieldEnum = {
+  id: 'id',
+  clientId: 'clientId',
+  planId: 'planId',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type MembershipScalarFieldEnum = (typeof MembershipScalarFieldEnum)[keyof typeof MembershipScalarFieldEnum]
+
+
+export const PaymentScalarFieldEnum = {
+  id: 'id',
+  clientId: 'clientId',
+  membershipId: 'membershipId',
+  amount: 'amount',
+  paymentMode: 'paymentMode',
+  transactionId: 'transactionId',
+  paymentDate: 'paymentDate',
+  nextDueDate: 'nextDueDate',
+  remarks: 'remarks',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+export const AttendanceScalarFieldEnum = {
+  id: 'id',
+  clientId: 'clientId',
+  checkIn: 'checkIn',
+  checkOut: 'checkOut'
+} as const
+
+export type AttendanceScalarFieldEnum = (typeof AttendanceScalarFieldEnum)[keyof typeof AttendanceScalarFieldEnum]
+
+
+export const WorkoutPlanScalarFieldEnum = {
+  id: 'id',
+  trainerId: 'trainerId',
+  clientId: 'clientId',
+  title: 'title',
+  description: 'description',
+  exercises: 'exercises',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type WorkoutPlanScalarFieldEnum = (typeof WorkoutPlanScalarFieldEnum)[keyof typeof WorkoutPlanScalarFieldEnum]
+
+
+export const DietPlanScalarFieldEnum = {
+  id: 'id',
+  trainerId: 'trainerId',
+  clientId: 'clientId',
+  breakfast: 'breakfast',
+  lunch: 'lunch',
+  dinner: 'dinner',
+  snacks: 'snacks',
+  calories: 'calories',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type DietPlanScalarFieldEnum = (typeof DietPlanScalarFieldEnum)[keyof typeof DietPlanScalarFieldEnum]
+
+
+export const ProgressScalarFieldEnum = {
+  id: 'id',
+  clientId: 'clientId',
+  weight: 'weight',
+  bmi: 'bmi',
+  bodyFat: 'bodyFat',
+  chest: 'chest',
+  waist: 'waist',
+  biceps: 'biceps',
+  shoulders: 'shoulders',
+  photoUrl: 'photoUrl',
+  recordDate: 'recordDate'
+} as const
+
+export type ProgressScalarFieldEnum = (typeof ProgressScalarFieldEnum)[keyof typeof ProgressScalarFieldEnum]
+
+
+export const NotificationScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  title: 'title',
+  message: 'message',
+  isRead: 'isRead',
+  createdAt: 'createdAt'
+} as const
+
+export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -91,6 +236,13 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+export const JsonNullValueInput = {
+  JsonNull: JsonNull
+} as const
+
+export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
 export const QueryMode = {
@@ -107,4 +259,13 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+export const JsonNullValueFilter = {
+  DbNull: DbNull,
+  JsonNull: JsonNull,
+  AnyNull: AnyNull
+} as const
+
+export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

@@ -1,26 +1,34 @@
 import express from "express";
-import cors from "cors"
-import type { Request, Response } from "express";
-import noticeRouter from "./routes/notice.routes.js";
+import cors from "cors";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import { z } from "zod";
+import { prisma } from "./lib/prisma.js";
 import { config } from "./config/config.js";
+import type { NextFunction, Request, Response } from "express";
+import type { Role } from "../generated/prisma/enums.js";
 
-const app = express();
-
-app.use(express.json());
-app.use(cors({
-    origin: ["http://localhost:3000", "https://reno-notice-frontend-web.vercel.app"],
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-}))
-app.use("/notices", noticeRouter);
-
-app.get("/", (_req: Request, res: Response) => {
-  res.json({ message: "Reno backend is running" });
-});
-
-app.get("/health", (_req: Request, res: Response) => {
-  res.json({ status: "ok" });
-});
-
-app.listen(config.port, () => {
-  console.log(`Server is running on http://localhost:${config.port}`);
-});
+type AuthRequest = Request & { auth?: { userId:number; role:Role } };
+const app=express(); app.use(express.json()); app.use(cors({origin:true}));
+const asyncRoute=(fn:any)=>(req:Request,res:Response,next:NextFunction)=>Promise.resolve(fn(req,res,next)).catch(next);
+const auth=(req:AuthRequest,res:Response,next:NextFunction)=>{const t=req.headers.authorization?.replace(/^Bearer /,"");if(!t)return res.status(401).json({error:"Authentication required"});try{req.auth=jwt.verify(t,config.jwtSecret) as any;next()}catch{return res.status(401).json({error:"Invalid or expired token"})}};
+const roles=(...allowed:Role[])=>(req:AuthRequest,res:Response,next:NextFunction)=>req.auth&&allowed.includes(req.auth.role)?next():res.status(403).json({error:"Forbidden"});
+const creds=z.object({email:z.string().email(),password:z.string().min(8)});
+app.post("/auth/register",asyncRoute(async(req:Request,res:Response)=>{const p=creds.extend({name:z.string().min(2)}).parse(req.body),email=p.email.toLowerCase();if(await prisma.user.findUnique({where:{email}}))return res.status(409).json({error:"Email exists"});const user=await prisma.user.create({data:{name:p.name,email,passwordHash:await bcrypt.hash(p.password,12),clientProfile:{create:{}}},select:{id:true,name:true,email:true,role:true}});res.status(201).json({data:user})}));
+app.post("/auth/login",asyncRoute(async(req:Request,res:Response)=>{const p=creds.parse(req.body),u=await prisma.user.findUnique({where:{email:p.email.toLowerCase()}});if(!u||!await bcrypt.compare(p.password,u.passwordHash))return res.status(401).json({error:"Invalid credentials"});if(u.status!=="ACTIVE")return res.status(403).json({error:"Account inactive"});const payload={userId:u.id,role:u.role},accessToken=jwt.sign(payload,config.jwtSecret,{expiresIn:"15m"}),refreshToken=jwt.sign(payload,config.jwtRefreshSecret,{expiresIn:"7d"});await prisma.user.update({where:{id:u.id},data:{refreshToken:await bcrypt.hash(refreshToken,10)}});res.json({data:{accessToken,refreshToken,user:{id:u.id,name:u.name,email:u.email,role:u.role}}})}));
+app.post("/auth/refresh",asyncRoute(async(req:Request,res:Response)=>{const token=z.string().parse(req.body.refreshToken),p=jwt.verify(token,config.jwtRefreshSecret) as any,u=await prisma.user.findUnique({where:{id:p.userId}});if(!u?.refreshToken||!await bcrypt.compare(token,u.refreshToken))return res.status(401).json({error:"Token revoked"});res.json({data:{accessToken:jwt.sign({userId:u.id,role:u.role},config.jwtSecret,{expiresIn:"15m"})}})}));
+app.post("/auth/logout",auth,asyncRoute(async(req:AuthRequest,res:Response)=>{await prisma.user.update({where:{id:req.auth!.userId},data:{refreshToken:null}});res.status(204).send()}));
+const admin=[auth,roles("SUPER_ADMIN","ADMIN")];
+app.get("/clients",...admin,asyncRoute(async(_q:Request,res:Response)=>res.json({data:await prisma.clientProfile.findMany({include:{user:{select:{id:true,name:true,email:true,status:true}},memberships:{include:{plan:true}}}})})));
+app.get("/clients/:id",auth,asyncRoute(async(req:AuthRequest,res:Response)=>{const id=Number(req.params.id),c=await prisma.clientProfile.findUnique({where:{id},include:{user:{select:{id:true,name:true,email:true,status:true}},memberships:{include:{plan:true}},payments:true,attendance:true,workouts:true,diets:true,progress:true}});if(!c)return res.status(404).json({error:"Client not found"});if(req.auth!.role==="CLIENT"&&c.userId!==req.auth!.userId)return res.status(403).json({error:"Forbidden"});res.json({data:c})}));
+app.patch("/clients/:id",...admin,asyncRoute(async(req:Request,res:Response)=>res.json({data:await prisma.clientProfile.update({where:{id:Number(req.params.id)},data:req.body})})));
+app.patch("/clients/:id/status",...admin,asyncRoute(async(req:Request,res:Response)=>{const c=await prisma.clientProfile.findUniqueOrThrow({where:{id:Number(req.params.id)}});res.json({data:await prisma.user.update({where:{id:c.userId},data:{status:z.enum(["ACTIVE","SUSPENDED","INACTIVE"]).parse(req.body.status)},select:{id:true,status:true}})})}));
+const crud=(path:string,model:any,writeRoles:Role[]=["SUPER_ADMIN","ADMIN"])=>{app.get(path,auth,roles(...writeRoles),asyncRoute(async(_q:Request,res:Response)=>res.json({data:await model.findMany()})));app.post(path,auth,roles(...writeRoles),asyncRoute(async(req:Request,res:Response)=>res.status(201).json({data:await model.create({data:req.body})})));app.put(path+"/:id",auth,roles(...writeRoles),asyncRoute(async(req:Request,res:Response)=>res.json({data:await model.update({where:{id:Number(req.params.id)},data:req.body})})));};
+crud("/membership-plans",prisma.membershipPlan);crud("/memberships",prisma.membership);crud("/payments",prisma.payment);crud("/workout-plans",prisma.workoutPlan,["SUPER_ADMIN","ADMIN","TRAINER"]);crud("/diet-plans",prisma.dietPlan,["SUPER_ADMIN","ADMIN","TRAINER"]);crud("/progress",prisma.progress,["SUPER_ADMIN","ADMIN","TRAINER"]);
+app.get("/attendance",auth,roles("SUPER_ADMIN","ADMIN","TRAINER"),asyncRoute(async(_q:Request,res:Response)=>res.json({data:await prisma.attendance.findMany({orderBy:{checkIn:"desc"}})})));
+app.post("/attendance/checkin",auth,asyncRoute(async(req:AuthRequest,res:Response)=>{const c=await prisma.clientProfile.findUnique({where:{userId:req.auth!.userId}});const clientId=req.auth!.role==="CLIENT"?c?.id:Number(req.body.clientId);if(!clientId)return res.status(400).json({error:"Client required"});if(await prisma.attendance.findFirst({where:{clientId,checkOut:null}}))return res.status(409).json({error:"Already checked in"});res.status(201).json({data:await prisma.attendance.create({data:{clientId}})})}));
+app.post("/attendance/checkout", auth, asyncRoute(async (req: AuthRequest, res: Response) => { const c = await prisma.clientProfile.findUnique({ where: { userId: req.auth!.userId } }); const clientId = req.auth!.role === "CLIENT" ? c?.id : Number(req.body.clientId); const a = await prisma.attendance.findFirst({ where: { clientId, checkOut: null }, orderBy: { checkIn: "desc" } }); if (!a) return res.status(404).json({ error: "Open check-in not found" }); res.json({ data: await prisma.attendance.update({ where: { id: a.id }, data: { checkOut: new Date() } }) }); }));
+app.get("/dashboard",...admin,asyncRoute(async(_q:Request,res:Response)=>{const start=new Date();start.setHours(0,0,0,0);const [totalClients,activeMembers,todayAttendance,todayRevenue]=await Promise.all([prisma.clientProfile.count(),prisma.membership.count({where:{status:"ACTIVE"}}),prisma.attendance.count({where:{checkIn:{gte:start}}}),prisma.payment.aggregate({_sum:{amount:true},where:{paymentDate:{gte:start}}})]);res.json({data:{totalClients,activeMembers,todayAttendance,todayRevenue:todayRevenue._sum.amount??0}})}));
+app.get("/health",(_q,res)=>res.json({status:"ok",service:"gym-management-api"}));
+app.use((err:any,_q:Request,res:Response,_n:NextFunction)=>{console.error(err);res.status(err?.name==="ZodError"?400:500).json({error:err?.name==="ZodError"?"Validation failed":"Internal server error",details:err?.issues})});
+app.listen(config.port,()=>console.log(`Gym API running on http://localhost:${config.port}`));
