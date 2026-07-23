@@ -58,6 +58,7 @@ export const ModelName = {
   Payment: 'Payment',
   Attendance: 'Attendance',
   WorkoutPlan: 'WorkoutPlan',
+  WorkoutExercise: 'WorkoutExercise',
   DietPlan: 'DietPlan',
   Progress: 'Progress',
   Notification: 'Notification'
@@ -100,13 +101,13 @@ export const ClientProfileScalarFieldEnum = {
   phone: 'phone',
   dob: 'dob',
   gender: 'gender',
-  address: 'address',
-  emergencyContact: 'emergencyContact',
-  medicalNotes: 'medicalNotes',
-  weight: 'weight',
   height: 'height',
-  joiningDate: 'joiningDate',
+  weight: 'weight',
+  address: 'address',
   photoUrl: 'photoUrl',
+  medicalNotes: 'medicalNotes',
+  joiningDate: 'joiningDate',
+  emergencyContact: 'emergencyContact',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -152,6 +153,7 @@ export const PaymentScalarFieldEnum = {
   transactionId: 'transactionId',
   paymentDate: 'paymentDate',
   nextDueDate: 'nextDueDate',
+  status: 'status',
   remarks: 'remarks',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -176,12 +178,23 @@ export const WorkoutPlanScalarFieldEnum = {
   clientId: 'clientId',
   title: 'title',
   description: 'description',
-  exercises: 'exercises',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type WorkoutPlanScalarFieldEnum = (typeof WorkoutPlanScalarFieldEnum)[keyof typeof WorkoutPlanScalarFieldEnum]
+
+
+export const WorkoutExerciseScalarFieldEnum = {
+  id: 'id',
+  workoutPlanId: 'workoutPlanId',
+  exercise: 'exercise',
+  sets: 'sets',
+  reps: 'reps',
+  notes: 'notes'
+} as const
+
+export type WorkoutExerciseScalarFieldEnum = (typeof WorkoutExerciseScalarFieldEnum)[keyof typeof WorkoutExerciseScalarFieldEnum]
 
 
 export const DietPlanScalarFieldEnum = {
@@ -238,13 +251,6 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-export const JsonNullValueInput = {
-  JsonNull: JsonNull
-} as const
-
-export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
-
-
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -259,13 +265,4 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const JsonNullValueFilter = {
-  DbNull: DbNull,
-  JsonNull: JsonNull,
-  AnyNull: AnyNull
-} as const
-
-export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

@@ -361,7 +361,7 @@ export type DietPlanCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   trainer: Prisma.UserCreateNestedOneWithoutTrainerDietsInput
-  client: Prisma.ClientProfileCreateNestedOneWithoutDietsInput
+  client: Prisma.ClientProfileCreateNestedOneWithoutDietPlansInput
 }
 
 export type DietPlanUncheckedCreateInput = {
@@ -388,7 +388,7 @@ export type DietPlanUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   trainer?: Prisma.UserUpdateOneRequiredWithoutTrainerDietsNestedInput
-  client?: Prisma.ClientProfileUpdateOneRequiredWithoutDietsNestedInput
+  client?: Prisma.ClientProfileUpdateOneRequiredWithoutDietPlansNestedInput
 }
 
 export type DietPlanUncheckedUpdateInput = {
@@ -603,7 +603,7 @@ export type DietPlanCreateWithoutTrainerInput = {
   notes?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  client: Prisma.ClientProfileCreateNestedOneWithoutDietsInput
+  client: Prisma.ClientProfileCreateNestedOneWithoutDietPlansInput
 }
 
 export type DietPlanUncheckedCreateWithoutTrainerInput = {
@@ -735,7 +735,7 @@ export type DietPlanUpdateWithoutTrainerInput = {
   notes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  client?: Prisma.ClientProfileUpdateOneRequiredWithoutDietsNestedInput
+  client?: Prisma.ClientProfileUpdateOneRequiredWithoutDietPlansNestedInput
 }
 
 export type DietPlanUncheckedUpdateWithoutTrainerInput = {

@@ -29,15 +29,15 @@ export type AggregateClientProfile = {
 export type ClientProfileAvgAggregateOutputType = {
   id: number | null
   userId: number | null
-  weight: runtime.Decimal | null
   height: runtime.Decimal | null
+  weight: runtime.Decimal | null
 }
 
 export type ClientProfileSumAggregateOutputType = {
   id: number | null
   userId: number | null
-  weight: runtime.Decimal | null
   height: runtime.Decimal | null
+  weight: runtime.Decimal | null
 }
 
 export type ClientProfileMinAggregateOutputType = {
@@ -45,14 +45,14 @@ export type ClientProfileMinAggregateOutputType = {
   userId: number | null
   phone: string | null
   dob: Date | null
-  gender: string | null
-  address: string | null
-  emergencyContact: string | null
-  medicalNotes: string | null
-  weight: runtime.Decimal | null
+  gender: $Enums.Gender | null
   height: runtime.Decimal | null
-  joiningDate: Date | null
+  weight: runtime.Decimal | null
+  address: string | null
   photoUrl: string | null
+  medicalNotes: string | null
+  joiningDate: Date | null
+  emergencyContact: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -62,14 +62,14 @@ export type ClientProfileMaxAggregateOutputType = {
   userId: number | null
   phone: string | null
   dob: Date | null
-  gender: string | null
-  address: string | null
-  emergencyContact: string | null
-  medicalNotes: string | null
-  weight: runtime.Decimal | null
+  gender: $Enums.Gender | null
   height: runtime.Decimal | null
-  joiningDate: Date | null
+  weight: runtime.Decimal | null
+  address: string | null
   photoUrl: string | null
+  medicalNotes: string | null
+  joiningDate: Date | null
+  emergencyContact: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -80,13 +80,13 @@ export type ClientProfileCountAggregateOutputType = {
   phone: number
   dob: number
   gender: number
-  address: number
-  emergencyContact: number
-  medicalNotes: number
-  weight: number
   height: number
-  joiningDate: number
+  weight: number
+  address: number
   photoUrl: number
+  medicalNotes: number
+  joiningDate: number
+  emergencyContact: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -96,15 +96,15 @@ export type ClientProfileCountAggregateOutputType = {
 export type ClientProfileAvgAggregateInputType = {
   id?: true
   userId?: true
-  weight?: true
   height?: true
+  weight?: true
 }
 
 export type ClientProfileSumAggregateInputType = {
   id?: true
   userId?: true
-  weight?: true
   height?: true
+  weight?: true
 }
 
 export type ClientProfileMinAggregateInputType = {
@@ -113,13 +113,13 @@ export type ClientProfileMinAggregateInputType = {
   phone?: true
   dob?: true
   gender?: true
-  address?: true
-  emergencyContact?: true
-  medicalNotes?: true
-  weight?: true
   height?: true
-  joiningDate?: true
+  weight?: true
+  address?: true
   photoUrl?: true
+  medicalNotes?: true
+  joiningDate?: true
+  emergencyContact?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -130,13 +130,13 @@ export type ClientProfileMaxAggregateInputType = {
   phone?: true
   dob?: true
   gender?: true
-  address?: true
-  emergencyContact?: true
-  medicalNotes?: true
-  weight?: true
   height?: true
-  joiningDate?: true
+  weight?: true
+  address?: true
   photoUrl?: true
+  medicalNotes?: true
+  joiningDate?: true
+  emergencyContact?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -147,13 +147,13 @@ export type ClientProfileCountAggregateInputType = {
   phone?: true
   dob?: true
   gender?: true
-  address?: true
-  emergencyContact?: true
-  medicalNotes?: true
-  weight?: true
   height?: true
-  joiningDate?: true
+  weight?: true
+  address?: true
   photoUrl?: true
+  medicalNotes?: true
+  joiningDate?: true
+  emergencyContact?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -250,14 +250,14 @@ export type ClientProfileGroupByOutputType = {
   userId: number
   phone: string | null
   dob: Date | null
-  gender: string | null
-  address: string | null
-  emergencyContact: string | null
-  medicalNotes: string | null
-  weight: runtime.Decimal | null
+  gender: $Enums.Gender | null
   height: runtime.Decimal | null
-  joiningDate: Date
+  weight: runtime.Decimal | null
+  address: string | null
   photoUrl: string | null
+  medicalNotes: string | null
+  joiningDate: Date
+  emergencyContact: string | null
   createdAt: Date
   updatedAt: Date
   _count: ClientProfileCountAggregateOutputType | null
@@ -290,22 +290,22 @@ export type ClientProfileWhereInput = {
   userId?: Prisma.IntFilter<"ClientProfile"> | number
   phone?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
   dob?: Prisma.DateTimeNullableFilter<"ClientProfile"> | Date | string | null
-  gender?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
-  address?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
-  emergencyContact?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
-  medicalNotes?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
-  weight?: Prisma.DecimalNullableFilter<"ClientProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.EnumGenderNullableFilter<"ClientProfile"> | $Enums.Gender | null
   height?: Prisma.DecimalNullableFilter<"ClientProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFilter<"ClientProfile"> | Date | string
+  weight?: Prisma.DecimalNullableFilter<"ClientProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
   photoUrl?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
+  medicalNotes?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
+  joiningDate?: Prisma.DateTimeFilter<"ClientProfile"> | Date | string
+  emergencyContact?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ClientProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ClientProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   memberships?: Prisma.MembershipListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
   attendance?: Prisma.AttendanceListRelationFilter
-  workouts?: Prisma.WorkoutPlanListRelationFilter
-  diets?: Prisma.DietPlanListRelationFilter
+  workoutPlans?: Prisma.WorkoutPlanListRelationFilter
+  dietPlans?: Prisma.DietPlanListRelationFilter
   progress?: Prisma.ProgressListRelationFilter
 }
 
@@ -315,21 +315,21 @@ export type ClientProfileOrderByWithRelationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   dob?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
-  address?: Prisma.SortOrderInput | Prisma.SortOrder
-  emergencyContact?: Prisma.SortOrderInput | Prisma.SortOrder
-  medicalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
-  weight?: Prisma.SortOrderInput | Prisma.SortOrder
   height?: Prisma.SortOrderInput | Prisma.SortOrder
-  joiningDate?: Prisma.SortOrder
+  weight?: Prisma.SortOrderInput | Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
   photoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  medicalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  joiningDate?: Prisma.SortOrder
+  emergencyContact?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   memberships?: Prisma.MembershipOrderByRelationAggregateInput
   payments?: Prisma.PaymentOrderByRelationAggregateInput
   attendance?: Prisma.AttendanceOrderByRelationAggregateInput
-  workouts?: Prisma.WorkoutPlanOrderByRelationAggregateInput
-  diets?: Prisma.DietPlanOrderByRelationAggregateInput
+  workoutPlans?: Prisma.WorkoutPlanOrderByRelationAggregateInput
+  dietPlans?: Prisma.DietPlanOrderByRelationAggregateInput
   progress?: Prisma.ProgressOrderByRelationAggregateInput
 }
 
@@ -341,22 +341,22 @@ export type ClientProfileWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ClientProfileWhereInput | Prisma.ClientProfileWhereInput[]
   phone?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
   dob?: Prisma.DateTimeNullableFilter<"ClientProfile"> | Date | string | null
-  gender?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
-  address?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
-  emergencyContact?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
-  medicalNotes?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
-  weight?: Prisma.DecimalNullableFilter<"ClientProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.EnumGenderNullableFilter<"ClientProfile"> | $Enums.Gender | null
   height?: Prisma.DecimalNullableFilter<"ClientProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFilter<"ClientProfile"> | Date | string
+  weight?: Prisma.DecimalNullableFilter<"ClientProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
   photoUrl?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
+  medicalNotes?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
+  joiningDate?: Prisma.DateTimeFilter<"ClientProfile"> | Date | string
+  emergencyContact?: Prisma.StringNullableFilter<"ClientProfile"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ClientProfile"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ClientProfile"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   memberships?: Prisma.MembershipListRelationFilter
   payments?: Prisma.PaymentListRelationFilter
   attendance?: Prisma.AttendanceListRelationFilter
-  workouts?: Prisma.WorkoutPlanListRelationFilter
-  diets?: Prisma.DietPlanListRelationFilter
+  workoutPlans?: Prisma.WorkoutPlanListRelationFilter
+  dietPlans?: Prisma.DietPlanListRelationFilter
   progress?: Prisma.ProgressListRelationFilter
 }, "id" | "userId">
 
@@ -366,13 +366,13 @@ export type ClientProfileOrderByWithAggregationInput = {
   phone?: Prisma.SortOrderInput | Prisma.SortOrder
   dob?: Prisma.SortOrderInput | Prisma.SortOrder
   gender?: Prisma.SortOrderInput | Prisma.SortOrder
-  address?: Prisma.SortOrderInput | Prisma.SortOrder
-  emergencyContact?: Prisma.SortOrderInput | Prisma.SortOrder
-  medicalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
-  weight?: Prisma.SortOrderInput | Prisma.SortOrder
   height?: Prisma.SortOrderInput | Prisma.SortOrder
-  joiningDate?: Prisma.SortOrder
+  weight?: Prisma.SortOrderInput | Prisma.SortOrder
+  address?: Prisma.SortOrderInput | Prisma.SortOrder
   photoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  medicalNotes?: Prisma.SortOrderInput | Prisma.SortOrder
+  joiningDate?: Prisma.SortOrder
+  emergencyContact?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ClientProfileCountOrderByAggregateInput
@@ -390,14 +390,14 @@ export type ClientProfileScalarWhereWithAggregatesInput = {
   userId?: Prisma.IntWithAggregatesFilter<"ClientProfile"> | number
   phone?: Prisma.StringNullableWithAggregatesFilter<"ClientProfile"> | string | null
   dob?: Prisma.DateTimeNullableWithAggregatesFilter<"ClientProfile"> | Date | string | null
-  gender?: Prisma.StringNullableWithAggregatesFilter<"ClientProfile"> | string | null
-  address?: Prisma.StringNullableWithAggregatesFilter<"ClientProfile"> | string | null
-  emergencyContact?: Prisma.StringNullableWithAggregatesFilter<"ClientProfile"> | string | null
-  medicalNotes?: Prisma.StringNullableWithAggregatesFilter<"ClientProfile"> | string | null
-  weight?: Prisma.DecimalNullableWithAggregatesFilter<"ClientProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.EnumGenderNullableWithAggregatesFilter<"ClientProfile"> | $Enums.Gender | null
   height?: Prisma.DecimalNullableWithAggregatesFilter<"ClientProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeWithAggregatesFilter<"ClientProfile"> | Date | string
+  weight?: Prisma.DecimalNullableWithAggregatesFilter<"ClientProfile"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.StringNullableWithAggregatesFilter<"ClientProfile"> | string | null
   photoUrl?: Prisma.StringNullableWithAggregatesFilter<"ClientProfile"> | string | null
+  medicalNotes?: Prisma.StringNullableWithAggregatesFilter<"ClientProfile"> | string | null
+  joiningDate?: Prisma.DateTimeWithAggregatesFilter<"ClientProfile"> | Date | string
+  emergencyContact?: Prisma.StringNullableWithAggregatesFilter<"ClientProfile"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ClientProfile"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ClientProfile"> | Date | string
 }
@@ -405,22 +405,22 @@ export type ClientProfileScalarWhereWithAggregatesInput = {
 export type ClientProfileCreateInput = {
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutClientProfileInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressCreateNestedManyWithoutClientInput
 }
 
@@ -429,43 +429,43 @@ export type ClientProfileUncheckedCreateInput = {
   userId: number
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientProfileUpdateInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutClientProfileNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutClientNestedInput
 }
 
@@ -474,21 +474,21 @@ export type ClientProfileUncheckedUpdateInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -497,14 +497,14 @@ export type ClientProfileCreateManyInput = {
   userId: number
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -512,14 +512,14 @@ export type ClientProfileCreateManyInput = {
 export type ClientProfileUpdateManyMutationInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -529,14 +529,14 @@ export type ClientProfileUncheckedUpdateManyInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -552,13 +552,13 @@ export type ClientProfileCountOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   dob?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  address?: Prisma.SortOrder
-  emergencyContact?: Prisma.SortOrder
-  medicalNotes?: Prisma.SortOrder
-  weight?: Prisma.SortOrder
   height?: Prisma.SortOrder
-  joiningDate?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
+  address?: Prisma.SortOrder
   photoUrl?: Prisma.SortOrder
+  medicalNotes?: Prisma.SortOrder
+  joiningDate?: Prisma.SortOrder
+  emergencyContact?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -566,8 +566,8 @@ export type ClientProfileCountOrderByAggregateInput = {
 export type ClientProfileAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  weight?: Prisma.SortOrder
   height?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
 }
 
 export type ClientProfileMaxOrderByAggregateInput = {
@@ -576,13 +576,13 @@ export type ClientProfileMaxOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   dob?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  address?: Prisma.SortOrder
-  emergencyContact?: Prisma.SortOrder
-  medicalNotes?: Prisma.SortOrder
-  weight?: Prisma.SortOrder
   height?: Prisma.SortOrder
-  joiningDate?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
+  address?: Prisma.SortOrder
   photoUrl?: Prisma.SortOrder
+  medicalNotes?: Prisma.SortOrder
+  joiningDate?: Prisma.SortOrder
+  emergencyContact?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -593,13 +593,13 @@ export type ClientProfileMinOrderByAggregateInput = {
   phone?: Prisma.SortOrder
   dob?: Prisma.SortOrder
   gender?: Prisma.SortOrder
-  address?: Prisma.SortOrder
-  emergencyContact?: Prisma.SortOrder
-  medicalNotes?: Prisma.SortOrder
-  weight?: Prisma.SortOrder
   height?: Prisma.SortOrder
-  joiningDate?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
+  address?: Prisma.SortOrder
   photoUrl?: Prisma.SortOrder
+  medicalNotes?: Prisma.SortOrder
+  joiningDate?: Prisma.SortOrder
+  emergencyContact?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -607,8 +607,8 @@ export type ClientProfileMinOrderByAggregateInput = {
 export type ClientProfileSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
-  weight?: Prisma.SortOrder
   height?: Prisma.SortOrder
+  weight?: Prisma.SortOrder
 }
 
 export type ClientProfileScalarRelationFilter = {
@@ -650,6 +650,10 @@ export type ClientProfileUncheckedUpdateOneWithoutUserNestedInput = {
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
+}
+
+export type NullableEnumGenderFieldUpdateOperationsInput = {
+  set?: $Enums.Gender | null
 }
 
 export type NullableDecimalFieldUpdateOperationsInput = {
@@ -702,32 +706,32 @@ export type ClientProfileUpdateOneRequiredWithoutAttendanceNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClientProfileUpdateToOneWithWhereWithoutAttendanceInput, Prisma.ClientProfileUpdateWithoutAttendanceInput>, Prisma.ClientProfileUncheckedUpdateWithoutAttendanceInput>
 }
 
-export type ClientProfileCreateNestedOneWithoutWorkoutsInput = {
-  create?: Prisma.XOR<Prisma.ClientProfileCreateWithoutWorkoutsInput, Prisma.ClientProfileUncheckedCreateWithoutWorkoutsInput>
-  connectOrCreate?: Prisma.ClientProfileCreateOrConnectWithoutWorkoutsInput
+export type ClientProfileCreateNestedOneWithoutWorkoutPlansInput = {
+  create?: Prisma.XOR<Prisma.ClientProfileCreateWithoutWorkoutPlansInput, Prisma.ClientProfileUncheckedCreateWithoutWorkoutPlansInput>
+  connectOrCreate?: Prisma.ClientProfileCreateOrConnectWithoutWorkoutPlansInput
   connect?: Prisma.ClientProfileWhereUniqueInput
 }
 
-export type ClientProfileUpdateOneRequiredWithoutWorkoutsNestedInput = {
-  create?: Prisma.XOR<Prisma.ClientProfileCreateWithoutWorkoutsInput, Prisma.ClientProfileUncheckedCreateWithoutWorkoutsInput>
-  connectOrCreate?: Prisma.ClientProfileCreateOrConnectWithoutWorkoutsInput
-  upsert?: Prisma.ClientProfileUpsertWithoutWorkoutsInput
+export type ClientProfileUpdateOneRequiredWithoutWorkoutPlansNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientProfileCreateWithoutWorkoutPlansInput, Prisma.ClientProfileUncheckedCreateWithoutWorkoutPlansInput>
+  connectOrCreate?: Prisma.ClientProfileCreateOrConnectWithoutWorkoutPlansInput
+  upsert?: Prisma.ClientProfileUpsertWithoutWorkoutPlansInput
   connect?: Prisma.ClientProfileWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientProfileUpdateToOneWithWhereWithoutWorkoutsInput, Prisma.ClientProfileUpdateWithoutWorkoutsInput>, Prisma.ClientProfileUncheckedUpdateWithoutWorkoutsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientProfileUpdateToOneWithWhereWithoutWorkoutPlansInput, Prisma.ClientProfileUpdateWithoutWorkoutPlansInput>, Prisma.ClientProfileUncheckedUpdateWithoutWorkoutPlansInput>
 }
 
-export type ClientProfileCreateNestedOneWithoutDietsInput = {
-  create?: Prisma.XOR<Prisma.ClientProfileCreateWithoutDietsInput, Prisma.ClientProfileUncheckedCreateWithoutDietsInput>
-  connectOrCreate?: Prisma.ClientProfileCreateOrConnectWithoutDietsInput
+export type ClientProfileCreateNestedOneWithoutDietPlansInput = {
+  create?: Prisma.XOR<Prisma.ClientProfileCreateWithoutDietPlansInput, Prisma.ClientProfileUncheckedCreateWithoutDietPlansInput>
+  connectOrCreate?: Prisma.ClientProfileCreateOrConnectWithoutDietPlansInput
   connect?: Prisma.ClientProfileWhereUniqueInput
 }
 
-export type ClientProfileUpdateOneRequiredWithoutDietsNestedInput = {
-  create?: Prisma.XOR<Prisma.ClientProfileCreateWithoutDietsInput, Prisma.ClientProfileUncheckedCreateWithoutDietsInput>
-  connectOrCreate?: Prisma.ClientProfileCreateOrConnectWithoutDietsInput
-  upsert?: Prisma.ClientProfileUpsertWithoutDietsInput
+export type ClientProfileUpdateOneRequiredWithoutDietPlansNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientProfileCreateWithoutDietPlansInput, Prisma.ClientProfileUncheckedCreateWithoutDietPlansInput>
+  connectOrCreate?: Prisma.ClientProfileCreateOrConnectWithoutDietPlansInput
+  upsert?: Prisma.ClientProfileUpsertWithoutDietPlansInput
   connect?: Prisma.ClientProfileWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientProfileUpdateToOneWithWhereWithoutDietsInput, Prisma.ClientProfileUpdateWithoutDietsInput>, Prisma.ClientProfileUncheckedUpdateWithoutDietsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientProfileUpdateToOneWithWhereWithoutDietPlansInput, Prisma.ClientProfileUpdateWithoutDietPlansInput>, Prisma.ClientProfileUncheckedUpdateWithoutDietPlansInput>
 }
 
 export type ClientProfileCreateNestedOneWithoutProgressInput = {
@@ -747,21 +751,21 @@ export type ClientProfileUpdateOneRequiredWithoutProgressNestedInput = {
 export type ClientProfileCreateWithoutUserInput = {
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressCreateNestedManyWithoutClientInput
 }
 
@@ -769,21 +773,21 @@ export type ClientProfileUncheckedCreateWithoutUserInput = {
   id?: number
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -806,21 +810,21 @@ export type ClientProfileUpdateToOneWithWhereWithoutUserInput = {
 export type ClientProfileUpdateWithoutUserInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutClientNestedInput
 }
 
@@ -828,42 +832,42 @@ export type ClientProfileUncheckedUpdateWithoutUserInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientProfileCreateWithoutMembershipsInput = {
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutClientProfileInput
   payments?: Prisma.PaymentCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressCreateNestedManyWithoutClientInput
 }
 
@@ -872,20 +876,20 @@ export type ClientProfileUncheckedCreateWithoutMembershipsInput = {
   userId: number
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -908,21 +912,21 @@ export type ClientProfileUpdateToOneWithWhereWithoutMembershipsInput = {
 export type ClientProfileUpdateWithoutMembershipsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutClientProfileNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutClientNestedInput
 }
 
@@ -931,41 +935,41 @@ export type ClientProfileUncheckedUpdateWithoutMembershipsInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientProfileCreateWithoutPaymentsInput = {
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutClientProfileInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressCreateNestedManyWithoutClientInput
 }
 
@@ -974,20 +978,20 @@ export type ClientProfileUncheckedCreateWithoutPaymentsInput = {
   userId: number
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -1010,21 +1014,21 @@ export type ClientProfileUpdateToOneWithWhereWithoutPaymentsInput = {
 export type ClientProfileUpdateWithoutPaymentsInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutClientProfileNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutClientNestedInput
 }
 
@@ -1033,41 +1037,41 @@ export type ClientProfileUncheckedUpdateWithoutPaymentsInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientProfileCreateWithoutAttendanceInput = {
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutClientProfileInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressCreateNestedManyWithoutClientInput
 }
 
@@ -1076,20 +1080,20 @@ export type ClientProfileUncheckedCreateWithoutAttendanceInput = {
   userId: number
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -1112,21 +1116,21 @@ export type ClientProfileUpdateToOneWithWhereWithoutAttendanceInput = {
 export type ClientProfileUpdateWithoutAttendanceInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutClientProfileNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutClientNestedInput
 }
 
@@ -1135,246 +1139,246 @@ export type ClientProfileUncheckedUpdateWithoutAttendanceInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutClientNestedInput
 }
 
-export type ClientProfileCreateWithoutWorkoutsInput = {
+export type ClientProfileCreateWithoutWorkoutPlansInput = {
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutClientProfileInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressCreateNestedManyWithoutClientInput
 }
 
-export type ClientProfileUncheckedCreateWithoutWorkoutsInput = {
+export type ClientProfileUncheckedCreateWithoutWorkoutPlansInput = {
   id?: number
   userId: number
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutClientInput
 }
 
-export type ClientProfileCreateOrConnectWithoutWorkoutsInput = {
+export type ClientProfileCreateOrConnectWithoutWorkoutPlansInput = {
   where: Prisma.ClientProfileWhereUniqueInput
-  create: Prisma.XOR<Prisma.ClientProfileCreateWithoutWorkoutsInput, Prisma.ClientProfileUncheckedCreateWithoutWorkoutsInput>
+  create: Prisma.XOR<Prisma.ClientProfileCreateWithoutWorkoutPlansInput, Prisma.ClientProfileUncheckedCreateWithoutWorkoutPlansInput>
 }
 
-export type ClientProfileUpsertWithoutWorkoutsInput = {
-  update: Prisma.XOR<Prisma.ClientProfileUpdateWithoutWorkoutsInput, Prisma.ClientProfileUncheckedUpdateWithoutWorkoutsInput>
-  create: Prisma.XOR<Prisma.ClientProfileCreateWithoutWorkoutsInput, Prisma.ClientProfileUncheckedCreateWithoutWorkoutsInput>
+export type ClientProfileUpsertWithoutWorkoutPlansInput = {
+  update: Prisma.XOR<Prisma.ClientProfileUpdateWithoutWorkoutPlansInput, Prisma.ClientProfileUncheckedUpdateWithoutWorkoutPlansInput>
+  create: Prisma.XOR<Prisma.ClientProfileCreateWithoutWorkoutPlansInput, Prisma.ClientProfileUncheckedCreateWithoutWorkoutPlansInput>
   where?: Prisma.ClientProfileWhereInput
 }
 
-export type ClientProfileUpdateToOneWithWhereWithoutWorkoutsInput = {
+export type ClientProfileUpdateToOneWithWhereWithoutWorkoutPlansInput = {
   where?: Prisma.ClientProfileWhereInput
-  data: Prisma.XOR<Prisma.ClientProfileUpdateWithoutWorkoutsInput, Prisma.ClientProfileUncheckedUpdateWithoutWorkoutsInput>
+  data: Prisma.XOR<Prisma.ClientProfileUpdateWithoutWorkoutPlansInput, Prisma.ClientProfileUncheckedUpdateWithoutWorkoutPlansInput>
 }
 
-export type ClientProfileUpdateWithoutWorkoutsInput = {
+export type ClientProfileUpdateWithoutWorkoutPlansInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutClientProfileNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutClientNestedInput
 }
 
-export type ClientProfileUncheckedUpdateWithoutWorkoutsInput = {
+export type ClientProfileUncheckedUpdateWithoutWorkoutPlansInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutClientNestedInput
 }
 
-export type ClientProfileCreateWithoutDietsInput = {
+export type ClientProfileCreateWithoutDietPlansInput = {
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutClientProfileInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressCreateNestedManyWithoutClientInput
 }
 
-export type ClientProfileUncheckedCreateWithoutDietsInput = {
+export type ClientProfileUncheckedCreateWithoutDietPlansInput = {
   id?: number
   userId: number
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
   progress?: Prisma.ProgressUncheckedCreateNestedManyWithoutClientInput
 }
 
-export type ClientProfileCreateOrConnectWithoutDietsInput = {
+export type ClientProfileCreateOrConnectWithoutDietPlansInput = {
   where: Prisma.ClientProfileWhereUniqueInput
-  create: Prisma.XOR<Prisma.ClientProfileCreateWithoutDietsInput, Prisma.ClientProfileUncheckedCreateWithoutDietsInput>
+  create: Prisma.XOR<Prisma.ClientProfileCreateWithoutDietPlansInput, Prisma.ClientProfileUncheckedCreateWithoutDietPlansInput>
 }
 
-export type ClientProfileUpsertWithoutDietsInput = {
-  update: Prisma.XOR<Prisma.ClientProfileUpdateWithoutDietsInput, Prisma.ClientProfileUncheckedUpdateWithoutDietsInput>
-  create: Prisma.XOR<Prisma.ClientProfileCreateWithoutDietsInput, Prisma.ClientProfileUncheckedCreateWithoutDietsInput>
+export type ClientProfileUpsertWithoutDietPlansInput = {
+  update: Prisma.XOR<Prisma.ClientProfileUpdateWithoutDietPlansInput, Prisma.ClientProfileUncheckedUpdateWithoutDietPlansInput>
+  create: Prisma.XOR<Prisma.ClientProfileCreateWithoutDietPlansInput, Prisma.ClientProfileUncheckedCreateWithoutDietPlansInput>
   where?: Prisma.ClientProfileWhereInput
 }
 
-export type ClientProfileUpdateToOneWithWhereWithoutDietsInput = {
+export type ClientProfileUpdateToOneWithWhereWithoutDietPlansInput = {
   where?: Prisma.ClientProfileWhereInput
-  data: Prisma.XOR<Prisma.ClientProfileUpdateWithoutDietsInput, Prisma.ClientProfileUncheckedUpdateWithoutDietsInput>
+  data: Prisma.XOR<Prisma.ClientProfileUpdateWithoutDietPlansInput, Prisma.ClientProfileUncheckedUpdateWithoutDietPlansInput>
 }
 
-export type ClientProfileUpdateWithoutDietsInput = {
+export type ClientProfileUpdateWithoutDietPlansInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutClientProfileNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUpdateManyWithoutClientNestedInput
 }
 
-export type ClientProfileUncheckedUpdateWithoutDietsInput = {
+export type ClientProfileUncheckedUpdateWithoutDietPlansInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
   progress?: Prisma.ProgressUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientProfileCreateWithoutProgressInput = {
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutClientProfileInput
   memberships?: Prisma.MembershipCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanCreateNestedManyWithoutClientInput
 }
 
 export type ClientProfileUncheckedCreateWithoutProgressInput = {
@@ -1382,21 +1386,21 @@ export type ClientProfileUncheckedCreateWithoutProgressInput = {
   userId: number
   phone?: string | null
   dob?: Date | string | null
-  gender?: string | null
-  address?: string | null
-  emergencyContact?: string | null
-  medicalNotes?: string | null
-  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: $Enums.Gender | null
   height?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Date | string
+  weight?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: string | null
   photoUrl?: string | null
+  medicalNotes?: string | null
+  joiningDate?: Date | string
+  emergencyContact?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   memberships?: Prisma.MembershipUncheckedCreateNestedManyWithoutClientInput
   payments?: Prisma.PaymentUncheckedCreateNestedManyWithoutClientInput
   attendance?: Prisma.AttendanceUncheckedCreateNestedManyWithoutClientInput
-  workouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
-  diets?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutClientInput
+  dietPlans?: Prisma.DietPlanUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientProfileCreateOrConnectWithoutProgressInput = {
@@ -1418,22 +1422,22 @@ export type ClientProfileUpdateToOneWithWhereWithoutProgressInput = {
 export type ClientProfileUpdateWithoutProgressInput = {
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutClientProfileNestedInput
   memberships?: Prisma.MembershipUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUpdateManyWithoutClientNestedInput
 }
 
 export type ClientProfileUncheckedUpdateWithoutProgressInput = {
@@ -1441,21 +1445,21 @@ export type ClientProfileUncheckedUpdateWithoutProgressInput = {
   userId?: Prisma.IntFieldUpdateOperationsInput | number
   phone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   dob?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  gender?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  gender?: Prisma.NullableEnumGenderFieldUpdateOperationsInput | $Enums.Gender | null
   height?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  weight?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  address?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  medicalNotes?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  joiningDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  emergencyContact?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   memberships?: Prisma.MembershipUncheckedUpdateManyWithoutClientNestedInput
   payments?: Prisma.PaymentUncheckedUpdateManyWithoutClientNestedInput
   attendance?: Prisma.AttendanceUncheckedUpdateManyWithoutClientNestedInput
-  workouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
-  diets?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
+  workoutPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput
+  dietPlans?: Prisma.DietPlanUncheckedUpdateManyWithoutClientNestedInput
 }
 
 
@@ -1467,8 +1471,8 @@ export type ClientProfileCountOutputType = {
   memberships: number
   payments: number
   attendance: number
-  workouts: number
-  diets: number
+  workoutPlans: number
+  dietPlans: number
   progress: number
 }
 
@@ -1476,8 +1480,8 @@ export type ClientProfileCountOutputTypeSelect<ExtArgs extends runtime.Types.Ext
   memberships?: boolean | ClientProfileCountOutputTypeCountMembershipsArgs
   payments?: boolean | ClientProfileCountOutputTypeCountPaymentsArgs
   attendance?: boolean | ClientProfileCountOutputTypeCountAttendanceArgs
-  workouts?: boolean | ClientProfileCountOutputTypeCountWorkoutsArgs
-  diets?: boolean | ClientProfileCountOutputTypeCountDietsArgs
+  workoutPlans?: boolean | ClientProfileCountOutputTypeCountWorkoutPlansArgs
+  dietPlans?: boolean | ClientProfileCountOutputTypeCountDietPlansArgs
   progress?: boolean | ClientProfileCountOutputTypeCountProgressArgs
 }
 
@@ -1515,14 +1519,14 @@ export type ClientProfileCountOutputTypeCountAttendanceArgs<ExtArgs extends runt
 /**
  * ClientProfileCountOutputType without action
  */
-export type ClientProfileCountOutputTypeCountWorkoutsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ClientProfileCountOutputTypeCountWorkoutPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.WorkoutPlanWhereInput
 }
 
 /**
  * ClientProfileCountOutputType without action
  */
-export type ClientProfileCountOutputTypeCountDietsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ClientProfileCountOutputTypeCountDietPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.DietPlanWhereInput
 }
 
@@ -1540,21 +1544,21 @@ export type ClientProfileSelect<ExtArgs extends runtime.Types.Extensions.Interna
   phone?: boolean
   dob?: boolean
   gender?: boolean
-  address?: boolean
-  emergencyContact?: boolean
-  medicalNotes?: boolean
-  weight?: boolean
   height?: boolean
-  joiningDate?: boolean
+  weight?: boolean
+  address?: boolean
   photoUrl?: boolean
+  medicalNotes?: boolean
+  joiningDate?: boolean
+  emergencyContact?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   memberships?: boolean | Prisma.ClientProfile$membershipsArgs<ExtArgs>
   payments?: boolean | Prisma.ClientProfile$paymentsArgs<ExtArgs>
   attendance?: boolean | Prisma.ClientProfile$attendanceArgs<ExtArgs>
-  workouts?: boolean | Prisma.ClientProfile$workoutsArgs<ExtArgs>
-  diets?: boolean | Prisma.ClientProfile$dietsArgs<ExtArgs>
+  workoutPlans?: boolean | Prisma.ClientProfile$workoutPlansArgs<ExtArgs>
+  dietPlans?: boolean | Prisma.ClientProfile$dietPlansArgs<ExtArgs>
   progress?: boolean | Prisma.ClientProfile$progressArgs<ExtArgs>
   _count?: boolean | Prisma.ClientProfileCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["clientProfile"]>
@@ -1565,13 +1569,13 @@ export type ClientProfileSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   phone?: boolean
   dob?: boolean
   gender?: boolean
-  address?: boolean
-  emergencyContact?: boolean
-  medicalNotes?: boolean
-  weight?: boolean
   height?: boolean
-  joiningDate?: boolean
+  weight?: boolean
+  address?: boolean
   photoUrl?: boolean
+  medicalNotes?: boolean
+  joiningDate?: boolean
+  emergencyContact?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1583,13 +1587,13 @@ export type ClientProfileSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   phone?: boolean
   dob?: boolean
   gender?: boolean
-  address?: boolean
-  emergencyContact?: boolean
-  medicalNotes?: boolean
-  weight?: boolean
   height?: boolean
-  joiningDate?: boolean
+  weight?: boolean
+  address?: boolean
   photoUrl?: boolean
+  medicalNotes?: boolean
+  joiningDate?: boolean
+  emergencyContact?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1601,25 +1605,25 @@ export type ClientProfileSelectScalar = {
   phone?: boolean
   dob?: boolean
   gender?: boolean
-  address?: boolean
-  emergencyContact?: boolean
-  medicalNotes?: boolean
-  weight?: boolean
   height?: boolean
-  joiningDate?: boolean
+  weight?: boolean
+  address?: boolean
   photoUrl?: boolean
+  medicalNotes?: boolean
+  joiningDate?: boolean
+  emergencyContact?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ClientProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "phone" | "dob" | "gender" | "address" | "emergencyContact" | "medicalNotes" | "weight" | "height" | "joiningDate" | "photoUrl" | "createdAt" | "updatedAt", ExtArgs["result"]["clientProfile"]>
+export type ClientProfileOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "phone" | "dob" | "gender" | "height" | "weight" | "address" | "photoUrl" | "medicalNotes" | "joiningDate" | "emergencyContact" | "createdAt" | "updatedAt", ExtArgs["result"]["clientProfile"]>
 export type ClientProfileInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   memberships?: boolean | Prisma.ClientProfile$membershipsArgs<ExtArgs>
   payments?: boolean | Prisma.ClientProfile$paymentsArgs<ExtArgs>
   attendance?: boolean | Prisma.ClientProfile$attendanceArgs<ExtArgs>
-  workouts?: boolean | Prisma.ClientProfile$workoutsArgs<ExtArgs>
-  diets?: boolean | Prisma.ClientProfile$dietsArgs<ExtArgs>
+  workoutPlans?: boolean | Prisma.ClientProfile$workoutPlansArgs<ExtArgs>
+  dietPlans?: boolean | Prisma.ClientProfile$dietPlansArgs<ExtArgs>
   progress?: boolean | Prisma.ClientProfile$progressArgs<ExtArgs>
   _count?: boolean | Prisma.ClientProfileCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1637,8 +1641,8 @@ export type $ClientProfilePayload<ExtArgs extends runtime.Types.Extensions.Inter
     memberships: Prisma.$MembershipPayload<ExtArgs>[]
     payments: Prisma.$PaymentPayload<ExtArgs>[]
     attendance: Prisma.$AttendancePayload<ExtArgs>[]
-    workouts: Prisma.$WorkoutPlanPayload<ExtArgs>[]
-    diets: Prisma.$DietPlanPayload<ExtArgs>[]
+    workoutPlans: Prisma.$WorkoutPlanPayload<ExtArgs>[]
+    dietPlans: Prisma.$DietPlanPayload<ExtArgs>[]
     progress: Prisma.$ProgressPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1646,14 +1650,14 @@ export type $ClientProfilePayload<ExtArgs extends runtime.Types.Extensions.Inter
     userId: number
     phone: string | null
     dob: Date | null
-    gender: string | null
-    address: string | null
-    emergencyContact: string | null
-    medicalNotes: string | null
-    weight: runtime.Decimal | null
+    gender: $Enums.Gender | null
     height: runtime.Decimal | null
-    joiningDate: Date
+    weight: runtime.Decimal | null
+    address: string | null
     photoUrl: string | null
+    medicalNotes: string | null
+    joiningDate: Date
+    emergencyContact: string | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["clientProfile"]>
@@ -2054,8 +2058,8 @@ export interface Prisma__ClientProfileClient<T, Null = never, ExtArgs extends ru
   memberships<T extends Prisma.ClientProfile$membershipsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientProfile$membershipsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MembershipPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   payments<T extends Prisma.ClientProfile$paymentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientProfile$paymentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   attendance<T extends Prisma.ClientProfile$attendanceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientProfile$attendanceArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttendancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  workouts<T extends Prisma.ClientProfile$workoutsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientProfile$workoutsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkoutPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  diets<T extends Prisma.ClientProfile$dietsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientProfile$dietsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DietPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  workoutPlans<T extends Prisma.ClientProfile$workoutPlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientProfile$workoutPlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkoutPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  dietPlans<T extends Prisma.ClientProfile$dietPlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientProfile$dietPlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DietPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   progress<T extends Prisma.ClientProfile$progressArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientProfile$progressArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProgressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2090,14 +2094,14 @@ export interface ClientProfileFieldRefs {
   readonly userId: Prisma.FieldRef<"ClientProfile", 'Int'>
   readonly phone: Prisma.FieldRef<"ClientProfile", 'String'>
   readonly dob: Prisma.FieldRef<"ClientProfile", 'DateTime'>
-  readonly gender: Prisma.FieldRef<"ClientProfile", 'String'>
-  readonly address: Prisma.FieldRef<"ClientProfile", 'String'>
-  readonly emergencyContact: Prisma.FieldRef<"ClientProfile", 'String'>
-  readonly medicalNotes: Prisma.FieldRef<"ClientProfile", 'String'>
-  readonly weight: Prisma.FieldRef<"ClientProfile", 'Decimal'>
+  readonly gender: Prisma.FieldRef<"ClientProfile", 'Gender'>
   readonly height: Prisma.FieldRef<"ClientProfile", 'Decimal'>
-  readonly joiningDate: Prisma.FieldRef<"ClientProfile", 'DateTime'>
+  readonly weight: Prisma.FieldRef<"ClientProfile", 'Decimal'>
+  readonly address: Prisma.FieldRef<"ClientProfile", 'String'>
   readonly photoUrl: Prisma.FieldRef<"ClientProfile", 'String'>
+  readonly medicalNotes: Prisma.FieldRef<"ClientProfile", 'String'>
+  readonly joiningDate: Prisma.FieldRef<"ClientProfile", 'DateTime'>
+  readonly emergencyContact: Prisma.FieldRef<"ClientProfile", 'String'>
   readonly createdAt: Prisma.FieldRef<"ClientProfile", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ClientProfile", 'DateTime'>
 }
@@ -2573,9 +2577,9 @@ export type ClientProfile$attendanceArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
- * ClientProfile.workouts
+ * ClientProfile.workoutPlans
  */
-export type ClientProfile$workoutsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ClientProfile$workoutPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the WorkoutPlan
    */
@@ -2597,9 +2601,9 @@ export type ClientProfile$workoutsArgs<ExtArgs extends runtime.Types.Extensions.
 }
 
 /**
- * ClientProfile.diets
+ * ClientProfile.dietPlans
  */
-export type ClientProfile$dietsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type ClientProfile$dietPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the DietPlan
    */

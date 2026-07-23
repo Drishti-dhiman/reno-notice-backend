@@ -7,27 +7,209 @@ datasource db {
   provider = "postgresql"
 }
 
-model Notice {
-  id          Int            @id @default(autoincrement())
+enum Role {
+  SUPER_ADMIN
+  ADMIN
+  TRAINER
+  CLIENT
+}
+
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  INACTIVE
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum MembershipStatus {
+  ACTIVE
+  EXPIRED
+  PENDING
+  CANCELLED
+}
+
+enum PaymentMode {
+  CASH
+  UPI
+  CARD
+  NET_BANKING
+}
+
+enum PaymentStatus {
+  PAID
+  PENDING
+  FAILED
+  REFUNDED
+}
+
+model User {
+  id            Int            @id @default(autoincrement())
+  name          String
+  email         String         @unique
+  passwordHash  String
+  role          Role           @default(CLIENT)
+  status        UserStatus     @default(ACTIVE)
+  refreshToken  String?
+  clientProfile ClientProfile?
+  trainerPlans  WorkoutPlan[]  @relation("TrainerWorkouts")
+  trainerDiets  DietPlan[]     @relation("TrainerDiets")
+  notifications Notification[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model ClientProfile {
+  id               Int           @id @default(autoincrement())
+  userId           Int           @unique
+  user             User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  phone            String?
+  dob              DateTime?
+  gender           Gender?
+  height           Decimal?      @db.Decimal(6, 2)
+  weight           Decimal?      @db.Decimal(6, 2)
+  address          String?
+  photoUrl         String?
+  medicalNotes     String?
+  joiningDate      DateTime      @default(now())
+  emergencyContact String?
+  memberships      Membership[]
+  payments         Payment[]
+  attendance       Attendance[]
+  workoutPlans     WorkoutPlan[]
+  dietPlans        DietPlan[]
+  progress         Progress[]
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
+model MembershipPlan {
+  id           Int          @id @default(autoincrement())
+  name         String       @unique
+  durationDays Int
+  price        Decimal      @db.Decimal(10, 2)
+  discount     Decimal      @default(0) @db.Decimal(5, 2)
+  description  String?
+  isActive     Boolean      @default(true)
+  memberships  Membership[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+}
+
+model Membership {
+  id        Int              @id @default(autoincrement())
+  clientId  Int
+  planId    Int
+  client    ClientProfile    @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  plan      MembershipPlan   @relation(fields: [planId], references: [id])
+  startDate DateTime
+  endDate   DateTime
+  status    MembershipStatus @default(PENDING)
+  payments  Payment[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+
+  @@index([clientId, status])
+  @@index([endDate, status])
+}
+
+model Payment {
+  id            Int           @id @default(autoincrement())
+  clientId      Int
+  membershipId  Int?
+  client        ClientProfile @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  membership    Membership?   @relation(fields: [membershipId], references: [id])
+  amount        Decimal       @db.Decimal(10, 2)
+  paymentMode   PaymentMode
+  transactionId String?       @unique
+  paymentDate   DateTime      @default(now())
+  nextDueDate   DateTime?
+  status        PaymentStatus @default(PAID)
+  remarks       String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  @@index([clientId, paymentDate])
+}
+
+model Attendance {
+  id       Int           @id @default(autoincrement())
+  clientId Int
+  client   ClientProfile @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  checkIn  DateTime      @default(now())
+  checkOut DateTime?
+
+  @@index([clientId, checkIn])
+}
+
+model WorkoutPlan {
+  id          Int               @id @default(autoincrement())
+  trainerId   Int
+  clientId    Int
+  trainer     User              @relation("TrainerWorkouts", fields: [trainerId], references: [id])
+  client      ClientProfile     @relation(fields: [clientId], references: [id], onDelete: Cascade)
   title       String
-  body        String
-  category    NoticeCategory @default(GENERAL)
-  priority    NoticePriority @default(NORMAL)
-  publishDate DateTime
-  imageUrl    String?
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime
-
-  @@index([priority, publishDate])
+  description String?
+  exercises   WorkoutExercise[]
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
 }
 
-enum NoticeCategory {
-  EXAM
-  EVENT
-  GENERAL
+model WorkoutExercise {
+  id            Int         @id @default(autoincrement())
+  workoutPlanId Int
+  workoutPlan   WorkoutPlan @relation(fields: [workoutPlanId], references: [id], onDelete: Cascade)
+  exercise      String
+  sets          Int?
+  reps          Int?
+  notes         String?
 }
 
-enum NoticePriority {
-  NORMAL
-  URGENT
+model DietPlan {
+  id        Int           @id @default(autoincrement())
+  trainerId Int
+  clientId  Int
+  trainer   User          @relation("TrainerDiets", fields: [trainerId], references: [id])
+  client    ClientProfile @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  breakfast String?
+  lunch     String?
+  dinner    String?
+  snacks    String?
+  calories  Int?
+  notes     String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model Progress {
+  id         Int           @id @default(autoincrement())
+  clientId   Int
+  client     ClientProfile @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  weight     Decimal?      @db.Decimal(6, 2)
+  bmi        Decimal?      @db.Decimal(5, 2)
+  bodyFat    Decimal?      @db.Decimal(5, 2)
+  chest      Decimal?      @db.Decimal(6, 2)
+  waist      Decimal?      @db.Decimal(6, 2)
+  biceps     Decimal?      @db.Decimal(6, 2)
+  shoulders  Decimal?      @db.Decimal(6, 2)
+  photoUrl   String?
+  recordDate DateTime      @default(now())
+
+  @@index([clientId, recordDate])
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId, isRead])
 }

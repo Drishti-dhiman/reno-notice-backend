@@ -249,7 +249,7 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   clientProfile?: Prisma.XOR<Prisma.ClientProfileNullableScalarRelationFilter, Prisma.ClientProfileWhereInput> | null
-  trainerWorkouts?: Prisma.WorkoutPlanListRelationFilter
+  trainerPlans?: Prisma.WorkoutPlanListRelationFilter
   trainerDiets?: Prisma.DietPlanListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
 }
@@ -265,7 +265,7 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   clientProfile?: Prisma.ClientProfileOrderByWithRelationInput
-  trainerWorkouts?: Prisma.WorkoutPlanOrderByRelationAggregateInput
+  trainerPlans?: Prisma.WorkoutPlanOrderByRelationAggregateInput
   trainerDiets?: Prisma.DietPlanOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
 }
@@ -284,7 +284,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   clientProfile?: Prisma.XOR<Prisma.ClientProfileNullableScalarRelationFilter, Prisma.ClientProfileWhereInput> | null
-  trainerWorkouts?: Prisma.WorkoutPlanListRelationFilter
+  trainerPlans?: Prisma.WorkoutPlanListRelationFilter
   trainerDiets?: Prisma.DietPlanListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
 }, "id" | "email">
@@ -331,7 +331,7 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
-  trainerWorkouts?: Prisma.WorkoutPlanCreateNestedManyWithoutTrainerInput
+  trainerPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutTrainerInput
   trainerDiets?: Prisma.DietPlanCreateNestedManyWithoutTrainerInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
@@ -347,7 +347,7 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
-  trainerWorkouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutTrainerInput
+  trainerPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutTrainerInput
   trainerDiets?: Prisma.DietPlanUncheckedCreateNestedManyWithoutTrainerInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
@@ -362,7 +362,7 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
-  trainerWorkouts?: Prisma.WorkoutPlanUpdateManyWithoutTrainerNestedInput
+  trainerPlans?: Prisma.WorkoutPlanUpdateManyWithoutTrainerNestedInput
   trainerDiets?: Prisma.DietPlanUpdateManyWithoutTrainerNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
@@ -378,7 +378,7 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
-  trainerWorkouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutTrainerNestedInput
+  trainerPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutTrainerNestedInput
   trainerDiets?: Prisma.DietPlanUncheckedUpdateManyWithoutTrainerNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
@@ -509,18 +509,18 @@ export type UserUpdateOneRequiredWithoutClientProfileNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutClientProfileInput, Prisma.UserUpdateWithoutClientProfileInput>, Prisma.UserUncheckedUpdateWithoutClientProfileInput>
 }
 
-export type UserCreateNestedOneWithoutTrainerWorkoutsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTrainerWorkoutsInput, Prisma.UserUncheckedCreateWithoutTrainerWorkoutsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTrainerWorkoutsInput
+export type UserCreateNestedOneWithoutTrainerPlansInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTrainerPlansInput, Prisma.UserUncheckedCreateWithoutTrainerPlansInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTrainerPlansInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutTrainerWorkoutsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutTrainerWorkoutsInput, Prisma.UserUncheckedCreateWithoutTrainerWorkoutsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTrainerWorkoutsInput
-  upsert?: Prisma.UserUpsertWithoutTrainerWorkoutsInput
+export type UserUpdateOneRequiredWithoutTrainerPlansNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTrainerPlansInput, Prisma.UserUncheckedCreateWithoutTrainerPlansInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTrainerPlansInput
+  upsert?: Prisma.UserUpsertWithoutTrainerPlansInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTrainerWorkoutsInput, Prisma.UserUpdateWithoutTrainerWorkoutsInput>, Prisma.UserUncheckedUpdateWithoutTrainerWorkoutsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTrainerPlansInput, Prisma.UserUpdateWithoutTrainerPlansInput>, Prisma.UserUncheckedUpdateWithoutTrainerPlansInput>
 }
 
 export type UserCreateNestedOneWithoutTrainerDietsInput = {
@@ -560,7 +560,7 @@ export type UserCreateWithoutClientProfileInput = {
   refreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  trainerWorkouts?: Prisma.WorkoutPlanCreateNestedManyWithoutTrainerInput
+  trainerPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutTrainerInput
   trainerDiets?: Prisma.DietPlanCreateNestedManyWithoutTrainerInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
@@ -575,7 +575,7 @@ export type UserUncheckedCreateWithoutClientProfileInput = {
   refreshToken?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  trainerWorkouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutTrainerInput
+  trainerPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutTrainerInput
   trainerDiets?: Prisma.DietPlanUncheckedCreateNestedManyWithoutTrainerInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
@@ -605,7 +605,7 @@ export type UserUpdateWithoutClientProfileInput = {
   refreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  trainerWorkouts?: Prisma.WorkoutPlanUpdateManyWithoutTrainerNestedInput
+  trainerPlans?: Prisma.WorkoutPlanUpdateManyWithoutTrainerNestedInput
   trainerDiets?: Prisma.DietPlanUpdateManyWithoutTrainerNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
@@ -620,12 +620,12 @@ export type UserUncheckedUpdateWithoutClientProfileInput = {
   refreshToken?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  trainerWorkouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutTrainerNestedInput
+  trainerPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutTrainerNestedInput
   trainerDiets?: Prisma.DietPlanUncheckedUpdateManyWithoutTrainerNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutTrainerWorkoutsInput = {
+export type UserCreateWithoutTrainerPlansInput = {
   name: string
   email: string
   passwordHash: string
@@ -639,7 +639,7 @@ export type UserCreateWithoutTrainerWorkoutsInput = {
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutTrainerWorkoutsInput = {
+export type UserUncheckedCreateWithoutTrainerPlansInput = {
   id?: number
   name: string
   email: string
@@ -654,23 +654,23 @@ export type UserUncheckedCreateWithoutTrainerWorkoutsInput = {
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutTrainerWorkoutsInput = {
+export type UserCreateOrConnectWithoutTrainerPlansInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutTrainerWorkoutsInput, Prisma.UserUncheckedCreateWithoutTrainerWorkoutsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTrainerPlansInput, Prisma.UserUncheckedCreateWithoutTrainerPlansInput>
 }
 
-export type UserUpsertWithoutTrainerWorkoutsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutTrainerWorkoutsInput, Prisma.UserUncheckedUpdateWithoutTrainerWorkoutsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutTrainerWorkoutsInput, Prisma.UserUncheckedCreateWithoutTrainerWorkoutsInput>
+export type UserUpsertWithoutTrainerPlansInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTrainerPlansInput, Prisma.UserUncheckedUpdateWithoutTrainerPlansInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTrainerPlansInput, Prisma.UserUncheckedCreateWithoutTrainerPlansInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutTrainerWorkoutsInput = {
+export type UserUpdateToOneWithWhereWithoutTrainerPlansInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutTrainerWorkoutsInput, Prisma.UserUncheckedUpdateWithoutTrainerWorkoutsInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTrainerPlansInput, Prisma.UserUncheckedUpdateWithoutTrainerPlansInput>
 }
 
-export type UserUpdateWithoutTrainerWorkoutsInput = {
+export type UserUpdateWithoutTrainerPlansInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   passwordHash?: Prisma.StringFieldUpdateOperationsInput | string
@@ -684,7 +684,7 @@ export type UserUpdateWithoutTrainerWorkoutsInput = {
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutTrainerWorkoutsInput = {
+export type UserUncheckedUpdateWithoutTrainerPlansInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -709,7 +709,7 @@ export type UserCreateWithoutTrainerDietsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
-  trainerWorkouts?: Prisma.WorkoutPlanCreateNestedManyWithoutTrainerInput
+  trainerPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutTrainerInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutUserInput
 }
 
@@ -724,7 +724,7 @@ export type UserUncheckedCreateWithoutTrainerDietsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
-  trainerWorkouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutTrainerInput
+  trainerPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutTrainerInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -754,7 +754,7 @@ export type UserUpdateWithoutTrainerDietsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
-  trainerWorkouts?: Prisma.WorkoutPlanUpdateManyWithoutTrainerNestedInput
+  trainerPlans?: Prisma.WorkoutPlanUpdateManyWithoutTrainerNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutUserNestedInput
 }
 
@@ -769,7 +769,7 @@ export type UserUncheckedUpdateWithoutTrainerDietsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
-  trainerWorkouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutTrainerNestedInput
+  trainerPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutTrainerNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutUserNestedInput
 }
 
@@ -783,7 +783,7 @@ export type UserCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   clientProfile?: Prisma.ClientProfileCreateNestedOneWithoutUserInput
-  trainerWorkouts?: Prisma.WorkoutPlanCreateNestedManyWithoutTrainerInput
+  trainerPlans?: Prisma.WorkoutPlanCreateNestedManyWithoutTrainerInput
   trainerDiets?: Prisma.DietPlanCreateNestedManyWithoutTrainerInput
 }
 
@@ -798,7 +798,7 @@ export type UserUncheckedCreateWithoutNotificationsInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   clientProfile?: Prisma.ClientProfileUncheckedCreateNestedOneWithoutUserInput
-  trainerWorkouts?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutTrainerInput
+  trainerPlans?: Prisma.WorkoutPlanUncheckedCreateNestedManyWithoutTrainerInput
   trainerDiets?: Prisma.DietPlanUncheckedCreateNestedManyWithoutTrainerInput
 }
 
@@ -828,7 +828,7 @@ export type UserUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientProfile?: Prisma.ClientProfileUpdateOneWithoutUserNestedInput
-  trainerWorkouts?: Prisma.WorkoutPlanUpdateManyWithoutTrainerNestedInput
+  trainerPlans?: Prisma.WorkoutPlanUpdateManyWithoutTrainerNestedInput
   trainerDiets?: Prisma.DietPlanUpdateManyWithoutTrainerNestedInput
 }
 
@@ -843,7 +843,7 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clientProfile?: Prisma.ClientProfileUncheckedUpdateOneWithoutUserNestedInput
-  trainerWorkouts?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutTrainerNestedInput
+  trainerPlans?: Prisma.WorkoutPlanUncheckedUpdateManyWithoutTrainerNestedInput
   trainerDiets?: Prisma.DietPlanUncheckedUpdateManyWithoutTrainerNestedInput
 }
 
@@ -853,13 +853,13 @@ export type UserUncheckedUpdateWithoutNotificationsInput = {
  */
 
 export type UserCountOutputType = {
-  trainerWorkouts: number
+  trainerPlans: number
   trainerDiets: number
   notifications: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  trainerWorkouts?: boolean | UserCountOutputTypeCountTrainerWorkoutsArgs
+  trainerPlans?: boolean | UserCountOutputTypeCountTrainerPlansArgs
   trainerDiets?: boolean | UserCountOutputTypeCountTrainerDietsArgs
   notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
 }
@@ -877,7 +877,7 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountTrainerWorkoutsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCountOutputTypeCountTrainerPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.WorkoutPlanWhereInput
 }
 
@@ -907,7 +907,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   clientProfile?: boolean | Prisma.User$clientProfileArgs<ExtArgs>
-  trainerWorkouts?: boolean | Prisma.User$trainerWorkoutsArgs<ExtArgs>
+  trainerPlans?: boolean | Prisma.User$trainerPlansArgs<ExtArgs>
   trainerDiets?: boolean | Prisma.User$trainerDietsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -952,7 +952,7 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "email" | "passwordHash" | "role" | "status" | "refreshToken" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   clientProfile?: boolean | Prisma.User$clientProfileArgs<ExtArgs>
-  trainerWorkouts?: boolean | Prisma.User$trainerWorkoutsArgs<ExtArgs>
+  trainerPlans?: boolean | Prisma.User$trainerPlansArgs<ExtArgs>
   trainerDiets?: boolean | Prisma.User$trainerDietsArgs<ExtArgs>
   notifications?: boolean | Prisma.User$notificationsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -964,7 +964,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     clientProfile: Prisma.$ClientProfilePayload<ExtArgs> | null
-    trainerWorkouts: Prisma.$WorkoutPlanPayload<ExtArgs>[]
+    trainerPlans: Prisma.$WorkoutPlanPayload<ExtArgs>[]
     trainerDiets: Prisma.$DietPlanPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
   }
@@ -1373,7 +1373,7 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   clientProfile<T extends Prisma.User$clientProfileArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$clientProfileArgs<ExtArgs>>): Prisma.Prisma__ClientProfileClient<runtime.Types.Result.GetResult<Prisma.$ClientProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  trainerWorkouts<T extends Prisma.User$trainerWorkoutsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$trainerWorkoutsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkoutPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  trainerPlans<T extends Prisma.User$trainerPlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$trainerPlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkoutPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   trainerDiets<T extends Prisma.User$trainerDietsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$trainerDietsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DietPlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.User$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -1826,9 +1826,9 @@ export type User$clientProfileArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * User.trainerWorkouts
+ * User.trainerPlans
  */
-export type User$trainerWorkoutsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$trainerPlansArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the WorkoutPlan
    */

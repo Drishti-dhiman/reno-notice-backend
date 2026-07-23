@@ -77,6 +77,11 @@ export type Attendance = Prisma.AttendanceModel
  */
 export type WorkoutPlan = Prisma.WorkoutPlanModel
 /**
+ * Model WorkoutExercise
+ * 
+ */
+export type WorkoutExercise = Prisma.WorkoutExerciseModel
+/**
  * Model DietPlan
  * 
  */

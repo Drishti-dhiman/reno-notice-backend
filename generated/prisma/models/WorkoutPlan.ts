@@ -64,7 +64,6 @@ export type WorkoutPlanCountAggregateOutputType = {
   clientId: number
   title: number
   description: number
-  exercises: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -109,7 +108,6 @@ export type WorkoutPlanCountAggregateInputType = {
   clientId?: true
   title?: true
   description?: true
-  exercises?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -207,7 +205,6 @@ export type WorkoutPlanGroupByOutputType = {
   clientId: number
   title: string
   description: string | null
-  exercises: runtime.JsonValue
   createdAt: Date
   updatedAt: Date
   _count: WorkoutPlanCountAggregateOutputType | null
@@ -241,11 +238,11 @@ export type WorkoutPlanWhereInput = {
   clientId?: Prisma.IntFilter<"WorkoutPlan"> | number
   title?: Prisma.StringFilter<"WorkoutPlan"> | string
   description?: Prisma.StringNullableFilter<"WorkoutPlan"> | string | null
-  exercises?: Prisma.JsonFilter<"WorkoutPlan">
   createdAt?: Prisma.DateTimeFilter<"WorkoutPlan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"WorkoutPlan"> | Date | string
   trainer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   client?: Prisma.XOR<Prisma.ClientProfileScalarRelationFilter, Prisma.ClientProfileWhereInput>
+  exercises?: Prisma.WorkoutExerciseListRelationFilter
 }
 
 export type WorkoutPlanOrderByWithRelationInput = {
@@ -254,11 +251,11 @@ export type WorkoutPlanOrderByWithRelationInput = {
   clientId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  exercises?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   trainer?: Prisma.UserOrderByWithRelationInput
   client?: Prisma.ClientProfileOrderByWithRelationInput
+  exercises?: Prisma.WorkoutExerciseOrderByRelationAggregateInput
 }
 
 export type WorkoutPlanWhereUniqueInput = Prisma.AtLeast<{
@@ -270,11 +267,11 @@ export type WorkoutPlanWhereUniqueInput = Prisma.AtLeast<{
   clientId?: Prisma.IntFilter<"WorkoutPlan"> | number
   title?: Prisma.StringFilter<"WorkoutPlan"> | string
   description?: Prisma.StringNullableFilter<"WorkoutPlan"> | string | null
-  exercises?: Prisma.JsonFilter<"WorkoutPlan">
   createdAt?: Prisma.DateTimeFilter<"WorkoutPlan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"WorkoutPlan"> | Date | string
   trainer?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   client?: Prisma.XOR<Prisma.ClientProfileScalarRelationFilter, Prisma.ClientProfileWhereInput>
+  exercises?: Prisma.WorkoutExerciseListRelationFilter
 }, "id">
 
 export type WorkoutPlanOrderByWithAggregationInput = {
@@ -283,7 +280,6 @@ export type WorkoutPlanOrderByWithAggregationInput = {
   clientId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  exercises?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.WorkoutPlanCountOrderByAggregateInput
@@ -302,7 +298,6 @@ export type WorkoutPlanScalarWhereWithAggregatesInput = {
   clientId?: Prisma.IntWithAggregatesFilter<"WorkoutPlan"> | number
   title?: Prisma.StringWithAggregatesFilter<"WorkoutPlan"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"WorkoutPlan"> | string | null
-  exercises?: Prisma.JsonWithAggregatesFilter<"WorkoutPlan">
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"WorkoutPlan"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"WorkoutPlan"> | Date | string
 }
@@ -310,11 +305,11 @@ export type WorkoutPlanScalarWhereWithAggregatesInput = {
 export type WorkoutPlanCreateInput = {
   title: string
   description?: string | null
-  exercises: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  trainer: Prisma.UserCreateNestedOneWithoutTrainerWorkoutsInput
-  client: Prisma.ClientProfileCreateNestedOneWithoutWorkoutsInput
+  trainer: Prisma.UserCreateNestedOneWithoutTrainerPlansInput
+  client: Prisma.ClientProfileCreateNestedOneWithoutWorkoutPlansInput
+  exercises?: Prisma.WorkoutExerciseCreateNestedManyWithoutWorkoutPlanInput
 }
 
 export type WorkoutPlanUncheckedCreateInput = {
@@ -323,19 +318,19 @@ export type WorkoutPlanUncheckedCreateInput = {
   clientId: number
   title: string
   description?: string | null
-  exercises: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  exercises?: Prisma.WorkoutExerciseUncheckedCreateNestedManyWithoutWorkoutPlanInput
 }
 
 export type WorkoutPlanUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  exercises?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  trainer?: Prisma.UserUpdateOneRequiredWithoutTrainerWorkoutsNestedInput
-  client?: Prisma.ClientProfileUpdateOneRequiredWithoutWorkoutsNestedInput
+  trainer?: Prisma.UserUpdateOneRequiredWithoutTrainerPlansNestedInput
+  client?: Prisma.ClientProfileUpdateOneRequiredWithoutWorkoutPlansNestedInput
+  exercises?: Prisma.WorkoutExerciseUpdateManyWithoutWorkoutPlanNestedInput
 }
 
 export type WorkoutPlanUncheckedUpdateInput = {
@@ -344,9 +339,9 @@ export type WorkoutPlanUncheckedUpdateInput = {
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  exercises?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  exercises?: Prisma.WorkoutExerciseUncheckedUpdateManyWithoutWorkoutPlanNestedInput
 }
 
 export type WorkoutPlanCreateManyInput = {
@@ -355,7 +350,6 @@ export type WorkoutPlanCreateManyInput = {
   clientId: number
   title: string
   description?: string | null
-  exercises: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -363,7 +357,6 @@ export type WorkoutPlanCreateManyInput = {
 export type WorkoutPlanUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  exercises?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -374,7 +367,6 @@ export type WorkoutPlanUncheckedUpdateManyInput = {
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  exercises?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -395,7 +387,6 @@ export type WorkoutPlanCountOrderByAggregateInput = {
   clientId?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  exercises?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -430,6 +421,11 @@ export type WorkoutPlanSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   trainerId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
+}
+
+export type WorkoutPlanScalarRelationFilter = {
+  is?: Prisma.WorkoutPlanWhereInput
+  isNot?: Prisma.WorkoutPlanWhereInput
 }
 
 export type WorkoutPlanCreateNestedManyWithoutTrainerInput = {
@@ -516,13 +512,27 @@ export type WorkoutPlanUncheckedUpdateManyWithoutClientNestedInput = {
   deleteMany?: Prisma.WorkoutPlanScalarWhereInput | Prisma.WorkoutPlanScalarWhereInput[]
 }
 
+export type WorkoutPlanCreateNestedOneWithoutExercisesInput = {
+  create?: Prisma.XOR<Prisma.WorkoutPlanCreateWithoutExercisesInput, Prisma.WorkoutPlanUncheckedCreateWithoutExercisesInput>
+  connectOrCreate?: Prisma.WorkoutPlanCreateOrConnectWithoutExercisesInput
+  connect?: Prisma.WorkoutPlanWhereUniqueInput
+}
+
+export type WorkoutPlanUpdateOneRequiredWithoutExercisesNestedInput = {
+  create?: Prisma.XOR<Prisma.WorkoutPlanCreateWithoutExercisesInput, Prisma.WorkoutPlanUncheckedCreateWithoutExercisesInput>
+  connectOrCreate?: Prisma.WorkoutPlanCreateOrConnectWithoutExercisesInput
+  upsert?: Prisma.WorkoutPlanUpsertWithoutExercisesInput
+  connect?: Prisma.WorkoutPlanWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.WorkoutPlanUpdateToOneWithWhereWithoutExercisesInput, Prisma.WorkoutPlanUpdateWithoutExercisesInput>, Prisma.WorkoutPlanUncheckedUpdateWithoutExercisesInput>
+}
+
 export type WorkoutPlanCreateWithoutTrainerInput = {
   title: string
   description?: string | null
-  exercises: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  client: Prisma.ClientProfileCreateNestedOneWithoutWorkoutsInput
+  client: Prisma.ClientProfileCreateNestedOneWithoutWorkoutPlansInput
+  exercises?: Prisma.WorkoutExerciseCreateNestedManyWithoutWorkoutPlanInput
 }
 
 export type WorkoutPlanUncheckedCreateWithoutTrainerInput = {
@@ -530,9 +540,9 @@ export type WorkoutPlanUncheckedCreateWithoutTrainerInput = {
   clientId: number
   title: string
   description?: string | null
-  exercises: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  exercises?: Prisma.WorkoutExerciseUncheckedCreateNestedManyWithoutWorkoutPlanInput
 }
 
 export type WorkoutPlanCreateOrConnectWithoutTrainerInput = {
@@ -570,7 +580,6 @@ export type WorkoutPlanScalarWhereInput = {
   clientId?: Prisma.IntFilter<"WorkoutPlan"> | number
   title?: Prisma.StringFilter<"WorkoutPlan"> | string
   description?: Prisma.StringNullableFilter<"WorkoutPlan"> | string | null
-  exercises?: Prisma.JsonFilter<"WorkoutPlan">
   createdAt?: Prisma.DateTimeFilter<"WorkoutPlan"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"WorkoutPlan"> | Date | string
 }
@@ -578,10 +587,10 @@ export type WorkoutPlanScalarWhereInput = {
 export type WorkoutPlanCreateWithoutClientInput = {
   title: string
   description?: string | null
-  exercises: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
-  trainer: Prisma.UserCreateNestedOneWithoutTrainerWorkoutsInput
+  trainer: Prisma.UserCreateNestedOneWithoutTrainerPlansInput
+  exercises?: Prisma.WorkoutExerciseCreateNestedManyWithoutWorkoutPlanInput
 }
 
 export type WorkoutPlanUncheckedCreateWithoutClientInput = {
@@ -589,9 +598,9 @@ export type WorkoutPlanUncheckedCreateWithoutClientInput = {
   trainerId: number
   title: string
   description?: string | null
-  exercises: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
+  exercises?: Prisma.WorkoutExerciseUncheckedCreateNestedManyWithoutWorkoutPlanInput
 }
 
 export type WorkoutPlanCreateOrConnectWithoutClientInput = {
@@ -620,12 +629,65 @@ export type WorkoutPlanUpdateManyWithWhereWithoutClientInput = {
   data: Prisma.XOR<Prisma.WorkoutPlanUpdateManyMutationInput, Prisma.WorkoutPlanUncheckedUpdateManyWithoutClientInput>
 }
 
+export type WorkoutPlanCreateWithoutExercisesInput = {
+  title: string
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  trainer: Prisma.UserCreateNestedOneWithoutTrainerPlansInput
+  client: Prisma.ClientProfileCreateNestedOneWithoutWorkoutPlansInput
+}
+
+export type WorkoutPlanUncheckedCreateWithoutExercisesInput = {
+  id?: number
+  trainerId: number
+  clientId: number
+  title: string
+  description?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type WorkoutPlanCreateOrConnectWithoutExercisesInput = {
+  where: Prisma.WorkoutPlanWhereUniqueInput
+  create: Prisma.XOR<Prisma.WorkoutPlanCreateWithoutExercisesInput, Prisma.WorkoutPlanUncheckedCreateWithoutExercisesInput>
+}
+
+export type WorkoutPlanUpsertWithoutExercisesInput = {
+  update: Prisma.XOR<Prisma.WorkoutPlanUpdateWithoutExercisesInput, Prisma.WorkoutPlanUncheckedUpdateWithoutExercisesInput>
+  create: Prisma.XOR<Prisma.WorkoutPlanCreateWithoutExercisesInput, Prisma.WorkoutPlanUncheckedCreateWithoutExercisesInput>
+  where?: Prisma.WorkoutPlanWhereInput
+}
+
+export type WorkoutPlanUpdateToOneWithWhereWithoutExercisesInput = {
+  where?: Prisma.WorkoutPlanWhereInput
+  data: Prisma.XOR<Prisma.WorkoutPlanUpdateWithoutExercisesInput, Prisma.WorkoutPlanUncheckedUpdateWithoutExercisesInput>
+}
+
+export type WorkoutPlanUpdateWithoutExercisesInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  trainer?: Prisma.UserUpdateOneRequiredWithoutTrainerPlansNestedInput
+  client?: Prisma.ClientProfileUpdateOneRequiredWithoutWorkoutPlansNestedInput
+}
+
+export type WorkoutPlanUncheckedUpdateWithoutExercisesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  trainerId?: Prisma.IntFieldUpdateOperationsInput | number
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type WorkoutPlanCreateManyTrainerInput = {
   id?: number
   clientId: number
   title: string
   description?: string | null
-  exercises: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -633,10 +695,10 @@ export type WorkoutPlanCreateManyTrainerInput = {
 export type WorkoutPlanUpdateWithoutTrainerInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  exercises?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  client?: Prisma.ClientProfileUpdateOneRequiredWithoutWorkoutsNestedInput
+  client?: Prisma.ClientProfileUpdateOneRequiredWithoutWorkoutPlansNestedInput
+  exercises?: Prisma.WorkoutExerciseUpdateManyWithoutWorkoutPlanNestedInput
 }
 
 export type WorkoutPlanUncheckedUpdateWithoutTrainerInput = {
@@ -644,9 +706,9 @@ export type WorkoutPlanUncheckedUpdateWithoutTrainerInput = {
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  exercises?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  exercises?: Prisma.WorkoutExerciseUncheckedUpdateManyWithoutWorkoutPlanNestedInput
 }
 
 export type WorkoutPlanUncheckedUpdateManyWithoutTrainerInput = {
@@ -654,7 +716,6 @@ export type WorkoutPlanUncheckedUpdateManyWithoutTrainerInput = {
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  exercises?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -664,7 +725,6 @@ export type WorkoutPlanCreateManyClientInput = {
   trainerId: number
   title: string
   description?: string | null
-  exercises: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -672,10 +732,10 @@ export type WorkoutPlanCreateManyClientInput = {
 export type WorkoutPlanUpdateWithoutClientInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  exercises?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  trainer?: Prisma.UserUpdateOneRequiredWithoutTrainerWorkoutsNestedInput
+  trainer?: Prisma.UserUpdateOneRequiredWithoutTrainerPlansNestedInput
+  exercises?: Prisma.WorkoutExerciseUpdateManyWithoutWorkoutPlanNestedInput
 }
 
 export type WorkoutPlanUncheckedUpdateWithoutClientInput = {
@@ -683,9 +743,9 @@ export type WorkoutPlanUncheckedUpdateWithoutClientInput = {
   trainerId?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  exercises?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  exercises?: Prisma.WorkoutExerciseUncheckedUpdateManyWithoutWorkoutPlanNestedInput
 }
 
 export type WorkoutPlanUncheckedUpdateManyWithoutClientInput = {
@@ -693,11 +753,39 @@ export type WorkoutPlanUncheckedUpdateManyWithoutClientInput = {
   trainerId?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  exercises?: Prisma.JsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type WorkoutPlanCountOutputType
+ */
+
+export type WorkoutPlanCountOutputType = {
+  exercises: number
+}
+
+export type WorkoutPlanCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  exercises?: boolean | WorkoutPlanCountOutputTypeCountExercisesArgs
+}
+
+/**
+ * WorkoutPlanCountOutputType without action
+ */
+export type WorkoutPlanCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkoutPlanCountOutputType
+   */
+  select?: Prisma.WorkoutPlanCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * WorkoutPlanCountOutputType without action
+ */
+export type WorkoutPlanCountOutputTypeCountExercisesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.WorkoutExerciseWhereInput
+}
 
 
 export type WorkoutPlanSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -706,11 +794,12 @@ export type WorkoutPlanSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   clientId?: boolean
   title?: boolean
   description?: boolean
-  exercises?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   trainer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   client?: boolean | Prisma.ClientProfileDefaultArgs<ExtArgs>
+  exercises?: boolean | Prisma.WorkoutPlan$exercisesArgs<ExtArgs>
+  _count?: boolean | Prisma.WorkoutPlanCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["workoutPlan"]>
 
 export type WorkoutPlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -719,7 +808,6 @@ export type WorkoutPlanSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   clientId?: boolean
   title?: boolean
   description?: boolean
-  exercises?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   trainer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -732,7 +820,6 @@ export type WorkoutPlanSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   clientId?: boolean
   title?: boolean
   description?: boolean
-  exercises?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   trainer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -745,15 +832,16 @@ export type WorkoutPlanSelectScalar = {
   clientId?: boolean
   title?: boolean
   description?: boolean
-  exercises?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type WorkoutPlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "trainerId" | "clientId" | "title" | "description" | "exercises" | "createdAt" | "updatedAt", ExtArgs["result"]["workoutPlan"]>
+export type WorkoutPlanOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "trainerId" | "clientId" | "title" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["workoutPlan"]>
 export type WorkoutPlanInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   trainer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   client?: boolean | Prisma.ClientProfileDefaultArgs<ExtArgs>
+  exercises?: boolean | Prisma.WorkoutPlan$exercisesArgs<ExtArgs>
+  _count?: boolean | Prisma.WorkoutPlanCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type WorkoutPlanIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   trainer?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -769,6 +857,7 @@ export type $WorkoutPlanPayload<ExtArgs extends runtime.Types.Extensions.Interna
   objects: {
     trainer: Prisma.$UserPayload<ExtArgs>
     client: Prisma.$ClientProfilePayload<ExtArgs>
+    exercises: Prisma.$WorkoutExercisePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -776,7 +865,6 @@ export type $WorkoutPlanPayload<ExtArgs extends runtime.Types.Extensions.Interna
     clientId: number
     title: string
     description: string | null
-    exercises: runtime.JsonValue
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["workoutPlan"]>
@@ -1175,6 +1263,7 @@ export interface Prisma__WorkoutPlanClient<T, Null = never, ExtArgs extends runt
   readonly [Symbol.toStringTag]: "PrismaPromise"
   trainer<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   client<T extends Prisma.ClientProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientProfileClient<runtime.Types.Result.GetResult<Prisma.$ClientProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  exercises<T extends Prisma.WorkoutPlan$exercisesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.WorkoutPlan$exercisesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$WorkoutExercisePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1209,7 +1298,6 @@ export interface WorkoutPlanFieldRefs {
   readonly clientId: Prisma.FieldRef<"WorkoutPlan", 'Int'>
   readonly title: Prisma.FieldRef<"WorkoutPlan", 'String'>
   readonly description: Prisma.FieldRef<"WorkoutPlan", 'String'>
-  readonly exercises: Prisma.FieldRef<"WorkoutPlan", 'Json'>
   readonly createdAt: Prisma.FieldRef<"WorkoutPlan", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"WorkoutPlan", 'DateTime'>
 }
@@ -1610,6 +1698,30 @@ export type WorkoutPlanDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many WorkoutPlans to delete.
    */
   limit?: number
+}
+
+/**
+ * WorkoutPlan.exercises
+ */
+export type WorkoutPlan$exercisesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the WorkoutExercise
+   */
+  select?: Prisma.WorkoutExerciseSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the WorkoutExercise
+   */
+  omit?: Prisma.WorkoutExerciseOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.WorkoutExerciseInclude<ExtArgs> | null
+  where?: Prisma.WorkoutExerciseWhereInput
+  orderBy?: Prisma.WorkoutExerciseOrderByWithRelationInput | Prisma.WorkoutExerciseOrderByWithRelationInput[]
+  cursor?: Prisma.WorkoutExerciseWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.WorkoutExerciseScalarFieldEnum | Prisma.WorkoutExerciseScalarFieldEnum[]
 }
 
 /**

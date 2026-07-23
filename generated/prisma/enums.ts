@@ -28,6 +28,15 @@ export const UserStatus = {
 export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
 
 
+export const Gender = {
+  MALE: 'MALE',
+  FEMALE: 'FEMALE',
+  OTHER: 'OTHER'
+} as const
+
+export type Gender = (typeof Gender)[keyof typeof Gender]
+
+
 export const MembershipStatus = {
   ACTIVE: 'ACTIVE',
   EXPIRED: 'EXPIRED',
@@ -46,3 +55,13 @@ export const PaymentMode = {
 } as const
 
 export type PaymentMode = (typeof PaymentMode)[keyof typeof PaymentMode]
+
+
+export const PaymentStatus = {
+  PAID: 'PAID',
+  PENDING: 'PENDING',
+  FAILED: 'FAILED',
+  REFUNDED: 'REFUNDED'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
